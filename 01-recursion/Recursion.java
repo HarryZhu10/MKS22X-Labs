@@ -50,12 +50,14 @@ public class Recursion {
                   //WRITE THIS METHOD
                   if (length > 0) {
                     for (int i = 0; i < letters.length; i ++) {
-                      if (i == 0 || word.charAt(i - 1) != word.charAt(i)) {
+                      if (word.length() < 2 || word.charAt(word.length() - 1) != word.charAt(word.length() - 2)) {
                       printNoDoubleLetterWords(length - 1, word + letters[i], letters);
                     }
                     }
                   } else {
+                    if (word.charAt(word.length() - 1) != word.charAt(word.length() - 2)) {
                     System.out.println(word);
+                  }
                   }
                 }
 
