@@ -12,7 +12,7 @@ public class Recursion {
          *@param length : either how many more letters or the total length depending on implementation
          *@param word   : the partial word so far.
          */
-         public static void printAllWords(int length,String word){
+        public static void printAllWords(int length,String word){
              if (length > 0) {
                for (char i = 'a'; i <= 'e'; i ++) {
                  printAllWords(length - 1, word + i);
@@ -36,7 +36,7 @@ public class Recursion {
                 *@param length : the length of the words that are to be printed
                 *@param letters: the letters you should be using
                 */
-                public static void printNoDoubleLetterWords(int length,char[] letters){
+        public static void printNoDoubleLetterWords(int length,char[] letters){
                   printNoDoubleLetterWords(length,"",letters);
                 }
 
@@ -46,7 +46,7 @@ public class Recursion {
                 *@param word   : the partial word so far.
                 *@param letters: the letters you should be using
                 */
-                public static void printNoDoubleLetterWords(int length,String word,char[]letters){
+        public static void printNoDoubleLetterWords(int length,String word,char[]letters){
                   //WRITE THIS METHOD
                   if (length > 0) {
                     for (int i = 0; i < letters.length; i ++) {
@@ -58,7 +58,15 @@ public class Recursion {
                     if (word.charAt(word.length() - 1) != word.charAt(word.length() - 2)) {
                     System.out.println(word);
                   }
-                  }
+                }
                 }
 
+
+
+        public static String reverse(String s){
+          while (!(s.equals(""))) {
+            return s.substring(s.length() - 1) + reverse(s.substring(0, s.length() - 1));
+          }
+
+        }
         }
