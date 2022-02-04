@@ -4,8 +4,9 @@ public class Recursion {
          */
          public static void printAllWords(int length){
            //printAllWords(length,"");
-           char[] letters = {'a', 'b', 'c', 'd'};
-           printNoDoubleLetterWords(3, letters);
+           //char[] letters = {'a', 'b', 'c', 'd'};
+           //printNoDoubleLetterWords(3, letters);
+           System.out.println(countNoDoubleLetterWords(3, ""));
          }
 
          /*Print all words that are made of the letters a-e inclusive.
@@ -23,9 +24,9 @@ public class Recursion {
          }
         public static void main(String[] args) {
           // printAllWords(3, "");
-        //  char[] letters = {'a', 'b', 'c', 'd'};
-        //   printNoDoubleLetterWords(3, letters);
-        System.out.println(reverse("slack"));
+          char[] letters = {'a', 'b', 'c', 'd'};
+           printNoDoubleLetterWords(3, letters);
+        //System.out.println(reverse("slack"));
         }
 
 
@@ -79,6 +80,8 @@ public class Recursion {
           *@return the number of words that have no adjacent matching letters using the letters a-z.
           *Repetition allowed except when letters are adjacent.
           */
+
+
           public static long countNoDoubleLetterWords(int length,String word){
             //Hint: not a wrapper method, but you must call it starting with "" as your word.
             if (length > 0) {
@@ -89,10 +92,12 @@ public class Recursion {
               }
             } else {
               if (word.charAt(word.length() - 1) != word.charAt(word.length() - 2)) {
-              return (word.length())
+               return (word.length() + 1);
             }
           }
 
           }
+
+          // maybe you can concatenate and then divide the length by 3 or something
 
         }
