@@ -72,4 +72,27 @@ public class Recursion {
           }
 
         }
+
+
+        /*@param length how long the words must be
+          *param word the variable to store the partial solution (should start at "")
+          *@return the number of words that have no adjacent matching letters using the letters a-z.
+          *Repetition allowed except when letters are adjacent.
+          */
+          public static long countNoDoubleLetterWords(int length,String word){
+            //Hint: not a wrapper method, but you must call it starting with "" as your word.
+            if (length > 0) {
+              for (char i = 'a'; i <= 'z'; i ++) {
+                if (word.length() < 2 || word.charAt(word.length() - 1) != word.charAt(word.length() - 2)) {
+                countNoDoubleLetterWords(length - 1, word + i);
+              }
+              }
+            } else {
+              if (word.charAt(word.length() - 1) != word.charAt(word.length() - 2)) {
+              return (word.length())
+            }
+          }
+
+          }
+
         }
