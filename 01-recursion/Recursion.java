@@ -23,8 +23,9 @@ public class Recursion {
          }
         public static void main(String[] args) {
           // printAllWords(3, "");
-          char[] letters = {'a', 'b', 'c', 'd'};
-           printNoDoubleLetterWords(3, letters);
+        //  char[] letters = {'a', 'b', 'c', 'd'};
+        //   printNoDoubleLetterWords(3, letters);
+        System.out.println(reverse("slack"));
         }
 
 
@@ -64,8 +65,10 @@ public class Recursion {
 
 
         public static String reverse(String s){
-          while (!(s.equals(""))) {
+          if (!(s.equals(""))) {
             return s.substring(s.length() - 1) + reverse(s.substring(0, s.length() - 1));
+          } else {
+            return "";
           }
 
         }
