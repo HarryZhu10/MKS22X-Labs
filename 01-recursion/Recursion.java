@@ -101,18 +101,22 @@ public class Recursion {
               return counter;
             }
 
-          // maybe you can concatenate and then divide the length by 3 or something
 
           /*
                     *@param n any non-negative value you want to take the sqrt of
                     *@return the approximate sqrt of n within a tolerance of 0.001%
-
+*/
                     public static double sqrt(double n){
                       //Hint: This is a wrapper method.
                       int guess = 1;
-                      while (n - guess * guess > )
+                      if (Math.abs((guess * guess - n) / n) * 100 > 0.001) {
+                        guess = (n / guess + guess) / 2;
+                        sqrt(guess);
+                      } else {
+                        return guess;
+                      }
                     }
-*/
+
 
 
           /*
