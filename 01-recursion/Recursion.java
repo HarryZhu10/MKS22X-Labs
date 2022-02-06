@@ -3,10 +3,7 @@ public class Recursion {
          *@param length : the length of the words that are to be printed
          */
          public static void printAllWords(int length){
-           //printAllWords(length,"");
-           //char[] letters = {'a', 'b', 'c', 'd'};
-           //printNoDoubleLetterWords(3, letters);
-           System.out.println(countNoDoubleLetterWords(3, ""));
+           printAllWords(length,"");
          }
 
          /*Print all words that are made of the letters a-e inclusive.
@@ -22,11 +19,16 @@ public class Recursion {
                System.out.println(word);
              }
          }
+
+
+
+
         public static void main(String[] args) {
           // printAllWords(3, "");
-          char[] letters = {'a', 'b', 'c', 'd'};
-           printNoDoubleLetterWords(3, letters);
+        //  char[] letters = {'a', 'b', 'c', 'd'};
+        //   printNoDoubleLetterWords(3, letters);
         //System.out.println(reverse("slack"));
+          System.out.println(countNoDoubleLetterWords(2, ""));
         }
 
 
@@ -82,22 +84,44 @@ public class Recursion {
           */
 
 
-          public static long countNoDoubleLetterWords(int length,String word){
+         public static long countNoDoubleLetterWords(int length,String word){
             //Hint: not a wrapper method, but you must call it starting with "" as your word.
+
+            //WRITE THIS METHOD
+            long counter = 0;
             if (length > 0) {
               for (char i = 'a'; i <= 'z'; i ++) {
-                if (word.length() < 2 || word.charAt(word.length() - 1) != word.charAt(word.length() - 2)) {
-                countNoDoubleLetterWords(length - 1, word + i);
-              }
-              }
-            } else {
-              if (word.charAt(word.length() - 1) != word.charAt(word.length() - 2)) {
-               return (word.length() + 1);
+                if (word.length() == 0 || word.charAt(word.length() - 1) != i) {
+                counter +=  countNoDoubleLetterWords(length - 1, word + i);
             }
-          }
-
-          }
+            }
+          } else {
+                counter ++;
+              }
+              return counter;
+            }
 
           // maybe you can concatenate and then divide the length by 3 or something
 
+          /*
+                    *@param n any non-negative value you want to take the sqrt of
+                    *@return the approximate sqrt of n within a tolerance of 0.001%
+
+                    public static double sqrt(double n){
+                      //Hint: This is a wrapper method.
+                      int guess = 1;
+                      while (n - guess * guess > )
+                    }
+*/
+
+
+          /*
+        *@param n any non-negative value
+        *@return the nth term of the fibonacci sequence. 0, 1, 1, 2, 3, 5 etc.
+
+        public int fibIter(int n, int f1, int f2){
+          //DO NOT call fibIter more than once
+        }
+
+*/
         }
