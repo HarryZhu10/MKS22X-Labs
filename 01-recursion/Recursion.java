@@ -29,11 +29,14 @@ public class Recursion {
            printNoDoubleLetterWords(3, letters);
            System.out.println(reverse("slack"));
            System.out.println(countNoDoubleLetterWords(2, ""));
+           System.out.println(countNoDoubleLetterWords(1, ""));
            System.out.println(sqrt(49));
            System.out.println(sqrt(0));
            System.out.println(sqrt(0, 1));
            System.out.println(sqrt(1));
            System.out.println(sqrt(2));
+           System.out.println(sqrt(0.25));
+           System.out.println(sqrt(0.39283));
            System.out.println(fibIter(3, 1, 0));
         }
 
