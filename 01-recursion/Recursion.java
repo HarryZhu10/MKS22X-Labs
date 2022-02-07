@@ -28,7 +28,9 @@ public class Recursion {
         //  char[] letters = {'a', 'b', 'c', 'd'};
         //   printNoDoubleLetterWords(3, letters);
         //System.out.println(reverse("slack"));
-          System.out.println(countNoDoubleLetterWords(2, ""));
+        //  System.out.println(countNoDoubleLetterWords(2, ""));
+        //  System.out.println(sqrt(49));
+          System.out.println(fibIter(3, 1, 0));
         }
 
 
@@ -105,27 +107,39 @@ public class Recursion {
           /*
                     *@param n any non-negative value you want to take the sqrt of
                     *@return the approximate sqrt of n within a tolerance of 0.001%
-*/
+
                     public static double sqrt(double n){
                       //Hint: This is a wrapper method.
-                      int guess = 1;
+                      double guess = 1;
                       if (Math.abs((guess * guess - n) / n) * 100 > 0.001) {
-                        guess = (n / guess + guess) / 2;
-                        sqrt(guess);
+                        guess = (n / guess + guess) / 2.0;
+                        return sqrt(guess);
                       } else {
-                        return guess;
-                      }
+                      return guess;
                     }
 
 
+                    }
+
+*/
 
           /*
         *@param n any non-negative value
         *@return the nth term of the fibonacci sequence. 0, 1, 1, 2, 3, 5 etc.
-
-        public int fibIter(int n, int f1, int f2){
+*/
+        public static int fibIter(int n, int f1, int f2){
           //DO NOT call fibIter more than once
+
+          if (n > 1) {
+            int save = f1;
+            f1 = f1 + f2;
+            f2 = save;
+            return fibIter(n - 1, f1, f2);
+          } else {
+            return f1;
+          }
+
         }
 
-*/
+
         }
