@@ -24,13 +24,17 @@ public class Recursion {
 
 
         public static void main(String[] args) {
-          // printAllWords(3, "");
-        //  char[] letters = {'a', 'b', 'c', 'd'};
-        //   printNoDoubleLetterWords(3, letters);
-        //System.out.println(reverse("slack"));
-        //  System.out.println(countNoDoubleLetterWords(2, ""));
-        //  System.out.println(sqrt(49));
-          System.out.println(fibIter(3, 1, 0));
+           printAllWords(3, "");
+         char[] letters = {'a', 'b', 'c', 'd'};
+           printNoDoubleLetterWords(3, letters);
+           System.out.println(reverse("slack"));
+           System.out.println(countNoDoubleLetterWords(2, ""));
+           System.out.println(sqrt(49));
+           System.out.println(sqrt(0));
+           System.out.println(sqrt(0, 1));
+           System.out.println(sqrt(1));
+           System.out.println(sqrt(2));
+           System.out.println(fibIter(3, 1, 0));
         }
 
 
@@ -107,13 +111,14 @@ public class Recursion {
           /*
                     *@param n any non-negative value you want to take the sqrt of
                     *@return the approximate sqrt of n within a tolerance of 0.001%
-
-                    public static double sqrt(double n){
-                      //Hint: This is a wrapper method.
-                      double guess = 1;
+*/
+                    public static double sqrt(double n, double guess){
+                      if (n == 0) {
+                        return 0.0;
+                      }
                       if (Math.abs((guess * guess - n) / n) * 100 > 0.001) {
                         guess = (n / guess + guess) / 2.0;
-                        return sqrt(guess);
+                        return sqrt(n, guess);
                       } else {
                       return guess;
                     }
@@ -121,7 +126,15 @@ public class Recursion {
 
                     }
 
-*/
+
+                    public static double sqrt(double n){
+                                //Hint: This is a wrapper method.
+                                if (n == 0) {
+                                  return 0.0;
+                                }
+                                return sqrt(n, 1);
+                              }
+
 
           /*
         *@param n any non-negative value
