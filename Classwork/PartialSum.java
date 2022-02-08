@@ -1,24 +1,20 @@
-public main PartialSum {
-
-
-  public static void main(String[] args) {
-
-  }
+public class PartialSum {
 
 
 
-// you need another method that tracks the index
-
-
-public static boolean partialSum (int[] nums, int n) {
-  if (nums.length > 0) {
-    if (nums[nums.length - 1] != n) {
-      return partialSum(nums, n);
+public static boolean partialSum(int start,int[] arr,int targetValue) {
+  if (targetValue != 0) {
+    if (!partialSum(start + 1, arr, targetValue)) {
+      if (targetValue - arr[start] > 0) {
+        return partialSum(start + 1, arr, targetValue - arr[start]);
+      }
+    }
+    else {
+      return partialSum(start + 1, arr, targetValue);
     }
   } else {
-
+    return true;
   }
-
 }
 
 }
