@@ -38,6 +38,30 @@ public static boolean groupNoAdj(int start, int[] nums, int target) {
 }
 
 
+public static boolean groupSum5(int start, int[] nums, int target) {
+  if (nums.length == 0) {
+    return target == 0;
+  }
+
+  if (start < nums.length) {
+
+    if (nums[start] == 5) {
+      if (!(start == nums.length - 1) && nums[start + 1] == 1) {
+        return (groupSum5(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target));
+      } else {
+        return groupSum5(start + 1, nums, target - 5);
+      }
+    } else {
+      return (groupSum5(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target));
+    }
+
+
+  } else {
+    return target == 0;
+  }
+}
+
+
 
 
 }
