@@ -79,22 +79,15 @@ public static boolean groupSum5(int start, int[] nums, int target) {
     return target == 0;
   }
 
-  if (start < nums.length) {
-    int amount = 0;
-
-
+  if (start != nums.length) {
+    if (nums[start] == 5 && start == nums.length - 1) {
+      return groupSum(start + 1, nums, target - nums[start]);
+    }
     if (nums[start] == 5 && nums[start + 1] == 1) {
-      amount -= 5;
+      return groupSum5(start + 1, nums, target);
     }
-
-    if (nums[start] == 5) {
-      amount += 5;
-      return (groupSum5(start + 1, nums, target - amount) || groupSum5(start + 1, nums, target));
-    }
-
-      return (groupSum5(start + 1, nums, target - nums[start]) || groupSum5(start + 1, nums, target));
-
-
+    
+    return (groupSum(start + 1, nums, target) || groupSum(start + 1, nums, target - nums[start]));
   } else {
     return target == 0;
   }
