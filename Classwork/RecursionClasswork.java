@@ -29,6 +29,21 @@ public boolean splitArray(int start, int[] nums, int target) {
 }
 
 
+public static boolean groupSum6(int start, int[] nums, int target) {
+  if (nums.length == 0) {
+    return target == 0;
+  }
+
+  if (start != nums.length) {
+    if (nums[start] == 6) {
+      return groupSum6(start + 1, nums, target - nums[start]);
+    } else {
+    return (groupSum6(start + 1, nums, target) || groupSum6(start + 1, nums, target - nums[start]));
+  }
+  } else {
+    return target == 0;
+  }
+}
 
 
 
