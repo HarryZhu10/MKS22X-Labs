@@ -84,7 +84,7 @@ public static boolean groupSum5(int start, int[] nums, int target) {
       return groupSum5(start + 1, nums, target - nums[start]);
     }
     if (nums[start] % 5 == 0 && nums[start + 1] == 1) {
-      return groupSum5(start + 1, nums, target);
+      return groupSum5(start + 2, nums, target - 5);
     }
 
     return (groupSum5(start + 1, nums, target) || groupSum5(start + 1, nums, target - nums[start]));
@@ -92,6 +92,28 @@ public static boolean groupSum5(int start, int[] nums, int target) {
     return target == 0;
   }
 }
+
+public static int firstDig (int num) {
+  while (num / 10 > 0) {
+    num = num / 10;
+  }
+  return num;
+}
+
+
+/*
+if (nums[start] % 5 == 0) {
+  if (start == nums.length - 1) {
+    return groupSum5(start + 1, nums, target - 5);
+  } else {
+    if (nums[start + 1] % 10 == 1) {
+      return groupSum5(start + 2, nums, target - 5);
+    }
+  }
+}
+*/
+
+
 
 
 
