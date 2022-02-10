@@ -13,17 +13,26 @@ public static boolean groupSum(int start, int[] nums, int target) {
 }
 
 
-public static boolean splitArray(int[] nums) {
+
+
+
+public boolean splitArray(int start, int[] nums, int target) {
   if (nums.length == 0) {
     return target == 0;
   }
 
   if (start != nums.length) {
-    return (groupSum(start + 1, nums, target) || groupSum(start + 1, nums, target - nums[start]));
+    return splitArray(start + 1, nums, target + nums[start]) || splitArray(start + 1, nums, target - nums[start]);
   } else {
     return target == 0;
   }
 }
+
+
+
+
+
+
 
 public static boolean groupNoAdj(int start, int[] nums, int target) {
   if (nums.length == 0) {
@@ -44,16 +53,19 @@ public static boolean groupSum5(int start, int[] nums, int target) {
   }
 
   if (start < nums.length) {
+    int amount = 0;
+
+
+    if (nums[start] == 5 && nums[start + 1] == 1) {
+      amount -= 5;
+    }
 
     if (nums[start] == 5) {
-      if (!(start == nums.length - 1) && nums[start + 1] == 1) {
-        return (groupSum5(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target));
-      } else {
-        return groupSum5(start + 1, nums, target - 5);
-      }
-    } else {
-      return (groupSum5(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target));
+      amount += 5;
+      return (groupSum5(start + 1, nums, target - amount) || groupSum5(start + 1, nums, target));
     }
+
+      return (groupSum5(start + 1, nums, target - nums[start]) || groupSum5(start + 1, nums, target));
 
 
   } else {
