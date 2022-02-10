@@ -16,7 +16,7 @@ public static boolean groupSum(int start, int[] nums, int target) {
 
 
 
-public boolean splitArray(int start, int[] nums, int target) {
+public static boolean splitArray(int start, int[] nums, int target) {
   if (nums.length == 0) {
     return target == 0;
   }
@@ -100,6 +100,24 @@ public static boolean groupSum5(int start, int[] nums, int target) {
   }
 }
 
+
+
+public static boolean split53 (int start, int[] nums, int target) {
+  if (nums.length == 0) {
+    return target == 0;
+  }
+
+  if (start != nums.length) {
+    if (nums[start] % 5 == 0) {
+      return split53(start + 1, nums, target + 5);
+    } else if (nums[start] % 3 == 0) {
+      return split53(start + 1, nums, target - 3);
+    }
+    return splitArray(start + 1, nums, target + nums[start]) || splitArray(start + 1, nums, target - nums[start]);
+  } else {
+    return target == 0;
+  }
+}
 
 
 
