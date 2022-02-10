@@ -25,6 +25,18 @@ public static boolean splitArray(int[] nums) {
   }
 }
 
+public static boolean groupNoAdj(int start, int[] nums, int target) {
+  if (nums.length == 0) {
+    return target == 0;
+  }
+
+  if (start < nums.length) {
+    return (groupNoAdj(start + 1, nums, target) || groupNoAdj(start + 2, nums, target - nums[start]));
+  } else {
+    return target == 0;
+  }
+}
+
 
 
 
