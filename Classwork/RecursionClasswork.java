@@ -111,9 +111,9 @@ public static boolean split53 (int start, int[] nums, int target) {
     if (nums[start] % 5 == 0) {
       return split53(start + 1, nums, target + nums[start]);
     } else if (nums[start] % 3 == 0) {
-      return split53(start + 1, nums, target - nums[start]);  
+      return split53(start + 1, nums, target - nums[start]);
     }
-    return splitArray(start + 1, nums, target + nums[start]) || splitArray(start + 1, nums, target - nums[start]);
+    return split53(start + 1, nums, target + nums[start]) || split53(start + 1, nums, target - nums[start]);
   } else {
     return target == 0;
   }
