@@ -80,14 +80,14 @@ public static boolean groupSum5(int start, int[] nums, int target) {
   }
 
   if (start != nums.length) {
-    if (nums[start] == 5 && start == nums.length - 1) {
-      return groupSum(start + 1, nums, target - nums[start]);
+    if (nums[start] % 5 == 0 && start == nums.length - 1) {
+      return groupSum5(start + 1, nums, target - nums[start]);
     }
-    if (nums[start] == 5 && nums[start + 1] == 1) {
+    if (nums[start] % 5 == 0 && nums[start + 1] == 1) {
       return groupSum5(start + 1, nums, target);
     }
-    
-    return (groupSum(start + 1, nums, target) || groupSum(start + 1, nums, target - nums[start]));
+
+    return (groupSum5(start + 1, nums, target) || groupSum5(start + 1, nums, target - nums[start]));
   } else {
     return target == 0;
   }
