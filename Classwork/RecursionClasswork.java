@@ -5,13 +5,10 @@ public static boolean groupSum(int start, int[] nums, int target) {
     return target == 0;
   }
 
-  if (target != 0) {
-    if (start == nums.length - 1) {
-      return false;
-    }
+  if (start != nums.length) {
     return (groupSum(start + 1, nums, target) || groupSum(start + 1, nums, target - nums[start]));
   } else {
-    return true;
+    return target == 0;
   }
 }
 
