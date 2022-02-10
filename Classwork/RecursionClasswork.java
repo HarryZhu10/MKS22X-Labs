@@ -46,13 +46,13 @@ public static boolean groupSum6(int start, int[] nums, int target) {
 }
 
 
-public boolean splitOdd10(int start, int[] nums, int target1, int target2) {
+public static boolean splitOdd10(int start, int[] nums, int target1, int target2) {
   if (nums.length == 0) {
-    return target1 && target2 == 0;
+    return target1 % 2 == 1 && target2 % 10 == 0;
   }
 
   if (start != nums.length) {
-    return splitArray(start + 1, nums, target) || splitArray(start + 1, nums, target - nums[start]);
+    return splitOdd10(start + 1, nums, target1 + nums[start], target2) || splitOdd10(start + 1, nums, target1, target2 + nums[start]);
   } else {
 
     return target1 % 2 == 1 && target2 % 10 == 0;
