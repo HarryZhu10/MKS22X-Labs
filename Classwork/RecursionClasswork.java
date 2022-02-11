@@ -129,23 +129,25 @@ public static boolean split53 (int start, int[] nums, int target) {
   }
 }
 
+
 public static boolean groupSumClump(int start, int[] nums, int target) {
   if (nums.length == 0) {
     return target == 0;
   }
 
   if (start != nums.length) {
+            int amount = 1;
+            int sum = 0;
     if (start != nums.length - 1) {
-        int amount = 1;
         while (nums[start] == nums[start + amount]) {
           amount ++;
         }
-        int sum = amount * nums[start];
+         sum = amount * nums[start];
     }
     if (amount > 1) {
-      return 
+      return (groupSumClump(start + amount, nums, target - sum) || groupSumClump(start + amount, nums, target));
     }
-    return (groupSum(start + 1, nums, target) || groupSum(start + 1, nums, target - nums[start]));
+    return (groupSumClump(start + 1, nums, target) || groupSumClump(start + 1, nums, target - nums[start]));
   } else {
     return target == 0;
   }
