@@ -93,15 +93,10 @@ public static boolean groupSum5(int start, int[] nums, int target) {
   }
 }
 
-public static int firstDig (int num) {
-  while (num / 10 > 0) {
-    num = num / 10;
-  }
-  return num;
-}
 
 
 /*
+
 if (nums[start] % 5 == 0) {
   if (start == nums.length - 1) {
     return groupSum5(start + 1, nums, target - 5);
@@ -134,6 +129,27 @@ public static boolean split53 (int start, int[] nums, int target) {
   }
 }
 
+public static boolean groupSumClump(int start, int[] nums, int target) {
+  if (nums.length == 0) {
+    return target == 0;
+  }
+
+  if (start != nums.length) {
+    if (start != nums.length - 1) {
+        int amount = 1;
+        while (nums[start] == nums[start + amount]) {
+          amount ++;
+        }
+        int sum = amount * nums[start];
+    }
+    if (amount > 1) {
+      return 
+    }
+    return (groupSum(start + 1, nums, target) || groupSum(start + 1, nums, target - nums[start]));
+  } else {
+    return target == 0;
+  }
+}
 
 
 }
