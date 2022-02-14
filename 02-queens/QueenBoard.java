@@ -51,11 +51,9 @@ public class QueenBoard {
              public boolean addQueen(int r, int c){
                if (board[r][c] == 0) {
                  board[r][c] = -1;
-                 for (int i = r; i < board.length; i ++) {
-                   board[r + 1][c] += 1;
-                   for (int x = c; x < board[i].length; x ++) {
-                     board[r + 1][c + 1] += 1;
-                   }
+                 for (int i = 1; r + i < board.length && c + i < board[r + i].length; i ++) {
+                   board[r + i][c] += 1;
+                   board[r + i][c + i] += 1;
                  }
                  return true;
                } else {
