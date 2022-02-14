@@ -65,9 +65,15 @@ public class QueenBoard {
              *@precondition r and c are valid indices of the board array and there is a queen at position r,c
              *@postcondition the board is modified to remove that queen and all it's
              *threatened positions are decremented
-
-             private void removeQueen(int r, int c){
-
+             */
+             public void removeQueen(int r, int c){
+               if (board[r][c] == -1) {
+                 board[r][c] ++;
+                 for (int i = 1; r + i < board.length && c + i < board[r + i].length; i ++) {
+                   board[r + i][c] -= 1;
+                   board[r + i][c + i] -= 1;
+                 }
+               }
              }
 
              /**Find the first solution configuration possible for this size board. Start by placing
