@@ -1,4 +1,10 @@
 public class QueenBoard {
+  private int[][] board;
+
+  public QueenBoard (int row, int col) {
+    board = new int [row][col];
+  }
+
   /**
            *@return The output string formatted as follows:
            *All numbers that represent queens are replaced with 'Q'
@@ -9,14 +15,35 @@ public class QueenBoard {
            *_ _ _ Q
            *_ Q _ _
            *excludes the characters up to the comment(*)
-           */
-           public String toString(){}
+*/
+           public String toString(){
+             String result = "";
+             for (int i = 0; i < board.length; i ++) {
+               for (int x = 0; x < board[i].length; x ++) {
 
+                 if (board[i][x] == -1) {
+                   result += 'Q';
+                 } else {
+                   //use this version if you are working on your lab (result += board[i][x];)
+                   result += '_';
+                 }
+
+                 if (x != board[i].length - 1) {
+                   result += " ";
+                 } else {
+                   result += "\n";
+                 }
+
+               }
+
+             }
+             return result;
+           }
            /**
            *@return true when the queen added correctly, false Otherwise
            *@postcondition the board is only changed when the function returns true
            * in which case the queen is added and all it's threatened positions are incremented
-           */
+
            private boolean addQueen(int r, int c){
 
            }
@@ -25,7 +52,7 @@ public class QueenBoard {
            *@precondition there is a queen at position r,c
            *@postcondition the board is modified to remove that queen and all it's
            *threatened positions are decremented
-           */
+
            private void removeQueen(int r, int c){
 
            }
@@ -38,17 +65,17 @@ public class QueenBoard {
            *@return false when the board is not solveable and leaves the board filled with zeros;
            *        returns true when the board is solveable, and leaves the board in a solved state
            *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
-           */
+
            public boolean solve(){}
 
            /**Find all possible solutions to this size board.
            *@return the number of solutions found, and leaves the board filled with only 0's
            *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
-           */
+
            public int countSolutions(){}
 
 
-
+*/
 
 
 }
