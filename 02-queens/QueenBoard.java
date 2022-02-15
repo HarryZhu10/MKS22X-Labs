@@ -54,6 +54,9 @@ public class QueenBoard {
                  for (int i = 1; r + i < board.length && c + i < board[r + i].length; i ++) {
                    board[r + i][c] += 1;
                    board[r + i][c + i] += 1;
+                   if (r - i >= 0 && c - i >= 0) {
+                     board[r - 1][c - 1] += 1;
+                   }
                  }
                  return true;
                } else {
@@ -72,6 +75,9 @@ public class QueenBoard {
                  for (int i = 1; r + i < board.length && c + i < board[r + i].length; i ++) {
                    board[r + i][c] -= 1;
                    board[r + i][c + i] -= 1;
+                   if (r - i >= 0 && c - i >= 0) {
+                     board[r - 1][c - 1] -= 1;
+                   }
                  }
                }
              }
@@ -87,6 +93,7 @@ public class QueenBoard {
 */
              public boolean solve(){
                return solve(0);
+               //check only here
              }
 
              public boolean solve (int row) {
