@@ -84,8 +84,26 @@ public class QueenBoard {
              *@return false when the board is not solveable and leaves the board filled with zeros;
              *        returns true when the board is solveable, and leaves the board in a solved state
              *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
+*/
+             public boolean solve(){
+               return solve(0);
+             }
 
-             public boolean solve(){}
+             public boolean solve (int row) {
+               if (row > board.length) {
+                 return true;
+               } else {
+                 for (int i = 0; i < board[row].length; i ++) {
+                   if (addQueen(row, i)) {
+                     if (solve(row + 1)) {
+                       return true;
+                     }
+                   }
+                   removeQueen(row, i);
+                 }
+                 return false;
+               }
+             }
 
              /**Find all possible solutions to this size board.
              *@return the number of solutions found, and leaves the board filled with only 0's
