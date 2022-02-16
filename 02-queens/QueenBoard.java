@@ -2,6 +2,11 @@ public class QueenBoard {
   private int[][] board;
   private int delay;
   private boolean animated;
+  public QueenBoard (int size){
+    board = new int [size][size];
+    delay = 1000;
+    animated = false;
+  }
   public QueenBoard (int row, int col) {
     board = new int [row][col];
     delay = 1000;
