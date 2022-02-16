@@ -1,8 +1,11 @@
 public class QueenBoard {
   private int[][] board;
-
+  private int delay;
+  private boolean animated;
   public QueenBoard (int row, int col) {
     board = new int [row][col];
+    delay = 1000;
+    animated = false;
   }
 
   /**
@@ -116,21 +119,44 @@ public class QueenBoard {
              }
 
              public boolean solve (int row) {
-               if (row > board.length) {
+               if (row >= board.length) {
                  return true;
                } else {
                  for (int i = 0; i < board[row].length; i ++) {
                    if (addQueen(row, i)) {
+                     if(animated){
+                       System.out.println(Text.go(1,1));
+                       System.out.println(this);//can modify here
+                       Text.wait(delay);
+                     }
+
                      if (solve(row + 1)) {
                        return true;
                      }
                    }
                    removeQueen(row, i);
+                   if(animated){
+                     System.out.println(Text.go(1,1));
+                     System.out.println(this);//can modify here
+                     Text.wait(delay);
+                   }
+
                  }
                  return false;
                }
              }
 
+             public void setAnimate(boolean newValue) {
+               animated = newValue;
+             }
+
+             public void setDelay(int newValue) {
+               if (newValue < 0) {
+               delay = 0;
+             } else {
+               delay = newValue;
+             }
+             }
              /**Find all possible solutions to this size board.
              *@return the number of solutions found, and leaves the board filled with only 0's
              *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
