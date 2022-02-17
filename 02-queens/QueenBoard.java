@@ -162,12 +162,33 @@ public class QueenBoard {
                delay = newValue;
              }
              }
-             /**Find all possible solutions to this size board.
+             /*Find all possible solutions to this size board.
              *@return the number of solutions found, and leaves the board filled with only 0's
              *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
+*/
+             public int countSolutions(int row){
+               int counter = 0;
+               if (row >= board.length) {
+                counter ++;
+               } else {
+                 for (int i = 0; i < board[row].length; i ++) {
+                   if (addQueen(row, i)) {
 
-             public int countSolutions(){}
+                       counter += countSolutions(row + 1);
+                   }
+                   removeQueen(row, i);
 
+                 }
 
-               */
+               }
+               return counter;
+             }
+
+/*
+             public int countSolutions () {
+
+             }
+
+*/
+
 }
