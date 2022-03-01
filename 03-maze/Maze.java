@@ -60,15 +60,15 @@ import java.util.*;
               return position;
             }
 
+
+
             public Maze(String filename) throws FileNotFoundException{
               //COMPLETE CONSTRUCTOR
-              try {
                 maze = fileRead(filename);
                 animate = false;
                 startRow = Integer.parseInt(findStart(filename).substring(0));
                 startCol = Integer.parseInt(findStart(filename).substring(1));
-            } catch (FileNotFoundException e) {
-            }
+
 
             }
 
@@ -154,6 +154,13 @@ import java.util.*;
                 System.out.println(this);
                 wait(50);
               }
+
+              if (maze[row][col] == 'E') {
+
+              } else {
+                
+              }
+
 
               //COMPLETE SOLVE
               return -1; //so it compiles
