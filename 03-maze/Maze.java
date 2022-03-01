@@ -96,8 +96,27 @@ import java.util.*;
             /*Return the string that represents the maze.
             It should look like the text file with some characters replaced.
             */
+
+
+            // ASK WHICH CHARACTERS ARE SUPPOSED TO BE REPLACED
+
+
+
+
+
+
+
             public String toString(){
-              return "WRITE THIS METHOD";
+              String combine = "";
+              for (int x = 0; x < maze.length; x ++){
+                for (int y = 0; y < maze[0].length; y ++){
+                  combine += maze[x][y];
+                }
+                if (x != maze.length - 1){
+                  combine += "\n";
+                }
+              }
+              return combine;
             }
 
             /*Wrapper Solve Function returns the helper function
