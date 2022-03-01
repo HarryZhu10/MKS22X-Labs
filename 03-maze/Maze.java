@@ -23,7 +23,7 @@ import java.util.*;
 
 
 
-            public static Character[][] fileRead (String file) throws FileNotFoundException{
+            public static char[][] fileRead (String file) throws FileNotFoundException{
                 File text = new File(file);
                 Scanner in = new Scanner(text);
                 ArrayList<String> store = new ArrayList<String>();
@@ -33,7 +33,7 @@ import java.util.*;
                     }
 
 
-                    Character[][] newStore = new Character[store.size()][(store.get(0)).length()];
+                    char[][] newStore = new char[store.size()][(store.get(0)).length()];
 
 
                     for (int i = 0; i < store.size(); i ++) {
@@ -47,14 +47,27 @@ import java.util.*;
 
             }
 
+            public static String findStart (String file) throws FileNotFoundException {
+              char[][] check = fileRead(file);
+              String position = "";
+              for (int i = 0; i < check.length; i ++) {
+                for (int x = 0; x < check[i].length; x ++) {
+                  if (check[i][x] == 'S') {
+                    position = position + i + x;
+                  }
+                }
+              }
+              return position;
+            }
 
             public Maze(String filename) throws FileNotFoundException{
               //COMPLETE CONSTRUCTOR
               try {
                 maze = fileRead(filename);
                 animate = false;
+                startRow = Integer.parseInt(findStart(filename).substring(0));
+                startCol = Integer.parseInt(findStart(filename).substring(1));
             } catch (FileNotFoundException e) {
-
             }
 
             }
