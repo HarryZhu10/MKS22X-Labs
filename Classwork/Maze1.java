@@ -1,47 +1,58 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+import java.util.*;
 
 
 public class Maze1 {
 
 
-//read ary first and then allocate the stuff
 
   public static void main(String[] args) {
+    try {
+      Character[][] ary = pasteToAry("Maze1.txt");
+      System.out.println(StringAry(ary));
+} catch (FileNotFoundException e) {
+}
+}
 
-  }
 
-  public static char[][] pasteToAry (String file) throws FileNotFoundException{
+public static Character[][] pasteToAry(String file)
+throws FileNotFoundException{
     File text = new File(file);
     Scanner in = new Scanner(text);
-
-        int row = 0;
-        int col = 0;
+    ArrayList<String> store = new ArrayList<String>();
 
         while (in.hasNext()) {
-          col ++;
-
+store.add(in.nextLine());
         }
 
-        while (in.hasNextLine()) {
-          row ++;
-        }
 
-        char[][] store = new char[row][col];
+        Character[][] newStore = new Character[store.size()][(store.get(0)).length()];
 
-while (in.hasNextLine()) {
-String line = in.nextLine();
-        for (int i = 0; i < store.length; i ++) {
-          for (int x = 0; x < line.length(); x ++) {
-            store[i][x] = line.charAt(x);
-            if (x == store[i].length - 1) {
-              store[i][x] += '\n';
-            }
+
+        for (int i = 0; i < store.size(); i ++) {
+          for (int x = 0; x < store.get(0).length(); x ++) {
+            newStore[i][x] = (store.get(i)).charAt(x);
+
           }
         }
-      }
-      return store;
+
+      return newStore;
+
 }
+
+public static String StringAry (Character[][] text) {
+  String result = "";
+  for (int i = 0; i < text.length; i ++) {
+    for (int x = 0; x < text[i].length; x ++) {
+      result += text[i][x];
+      if (x == text[i].length - 1) {
+        result += "\n";
+      }
+    }
+  }
+  return result;
+}
+
 }
