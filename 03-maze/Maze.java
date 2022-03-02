@@ -147,22 +147,84 @@ import java.util.*;
             All visited spots that were not part of the solution are changed to '.'
             All visited spots that are part of the solution are changed to '@'
             */
+
+            public boolean proceed (int r, int c) {
+              if (maze[r][c] == ' ') {
+                maze[r][c] = '@';
+                return true;
+              } else {
+                return false;
+              }
+            }
             private int solve(int row, int col){ //you can add more parameters since this is private
               //automatic animation! You are welcome.
+
               if(animate){
                 gotoTop();
                 System.out.println(this);
                 wait(50);
               }
 
+
+              if (maze[row][col] == 'E') {
+                return 0;
+              } else if (!proceed(row, col)) {
+                return -1;
+              } else {
+
+                int S = solve(row + 1, col);
+                if (S > -1) {
+                  return 1 + S;
+                }
+
+                int N = solve(row - 1, col);
+                if (N > -1) {
+                  return 1 + N;
+                }
+
+                int W = solve(row, col - 1);
+                if (W > -1) {
+                  return 1 + W;
+                }
+
+                int E = solve(row, col + 1);
+                if (E > -1) {
+                  return 1 + E;
+                }
+
+                if (maze[row][col] == '@') {
+                  maze[row][col] = '.';
+                }
+
+                if(animate){
+                  gotoTop();
+                  System.out.println(this);
+                  wait(50);
+                }
+
+
+
+              }
+              return -1;
+/*
               if (maze[row][col] == 'E') {
 
               } else {
-                
+                int i = -1;
+                while (i < 2) {
+                  if (proceed(row + i, col)) {
+                    return solve(row + i, col);
+                  }
+                  i += 2;
+                }
+                int x = -1;
+                while (!proceed(row, col + x) && x < 2) {
+                  if (proceed(row, col + x)) {
+                    return solve(row, col + x);
+                  }
+                  x += 2;
+                }
+*/
+
               }
-
-
-              //COMPLETE SOLVE
-              return -1; //so it compiles
             }
-          }
