@@ -66,7 +66,7 @@ import java.util.*;
               //COMPLETE CONSTRUCTOR
                 maze = fileRead(filename);
                 animate = false;
-                startRow = Integer.parseInt(findStart(filename).substring(0));
+                startRow = Integer.parseInt(findStart(filename).substring(0,1));
                 startCol = Integer.parseInt(findStart(filename).substring(1));
 
 
@@ -148,30 +148,21 @@ import java.util.*;
             All visited spots that are part of the solution are changed to '@'
             */
 
-            public boolean proceed (int r, int c) {
-              if (maze[r][c] == ' ') {
-                maze[r][c] = '@';
-                return true;
-              } else {
-                return false;
-              }
-            }
-            private int solve(int row, int col){ //you can add more parameters since this is private
+            public int solve(int row, int col){ //you can add more parameters since this is private
               //automatic animation! You are welcome.
-
-              if(animate){
-                gotoTop();
-                System.out.println(this);
-                wait(50);
-              }
 
 
               if (maze[row][col] == 'E') {
                 return 0;
-              } else if (!proceed(row, col)) {
+              } else if (maze[row][col] == '@' || maze[row][col] == '#' || maze[row][col] == '.') {
                 return -1;
               } else {
-
+                maze[row][col] = '@';
+                if(animate){
+                  gotoTop();
+                  System.out.println(this);
+                  wait(50);
+                }
                 int S = solve(row + 1, col);
                 if (S > -1) {
                   return 1 + S;
@@ -192,9 +183,9 @@ import java.util.*;
                   return 1 + E;
                 }
 
-                if (maze[row][col] == '@') {
+
                   maze[row][col] = '.';
-                }
+
 
                 if(animate){
                   gotoTop();
@@ -202,29 +193,8 @@ import java.util.*;
                   wait(50);
                 }
 
-
+                return -1;
 
               }
-              return -1;
-/*
-              if (maze[row][col] == 'E') {
-
-              } else {
-                int i = -1;
-                while (i < 2) {
-                  if (proceed(row + i, col)) {
-                    return solve(row + i, col);
-                  }
-                  i += 2;
-                }
-                int x = -1;
-                while (!proceed(row, col + x) && x < 2) {
-                  if (proceed(row, col + x)) {
-                    return solve(row, col + x);
-                  }
-                  x += 2;
-                }
-*/
-
               }
             }
