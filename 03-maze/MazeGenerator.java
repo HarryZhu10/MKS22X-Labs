@@ -23,8 +23,7 @@ public static int openNeighbors(char[][]maze, int row, int col) {
 
 
 public static boolean safeCarve (char[][]maze, int row, int col) {
-    if ()
-  return row != 0 && row != maze.length - 1 && col != 0 && col != maze[row].length - 1;
+      return row != 0 && row != maze.length - 1 && col != 0 && col != maze[row].length - 1 && maze[row][col] !=  ' ' && openNeighbors(maze, row, col) < 2;
 }
 
 
