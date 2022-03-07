@@ -1,5 +1,4 @@
 public class MazeGenerator {
-//you still need to check if the space have fewer than 2 open neighbors
 
 public static int openNeighbors(char[][]maze, int row, int col) {
   int sum = 0;
@@ -49,11 +48,23 @@ public static void carveGenerate(char[][]maze, int row, int col) {
       carveGenerate(maze, row, col - 1);
     }
   }
-
-
-
 }
 
+public static void generate(char[][]maze, int startrow, int startcol) {
+  carveGenerate(maze, startrow, startcol);
+  boolean placeE = true;
 
+  while (placeE) {
+    Random random = new Random();
+    int col = rand.nextInt(maze[0].length - 2) + 1;
+    int row = rand.nextInt(maze.length - 2) + 1;
+    if ((row != startrow || col != startcol) && Math.max(maze.length, maze[0].length) - 3 <= Math.abs(row - startrow) + Math.abs(col - startcol)) {
+      if (maze[row][col] == ' ') {
+        maze[row][col] = 'E';
+        placeE = false;
+      }
+    }
+  }
+}
 
 }
