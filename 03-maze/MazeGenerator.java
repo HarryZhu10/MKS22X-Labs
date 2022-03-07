@@ -28,7 +28,7 @@ public static boolean safeCarve (char[][]maze, int row, int col) {
 
 
 public static void carveGenerate(char[][]maze, int row, int col) {
-  if (safeCarve(maze, startrow, startcol) == true) {
+  if (safeCarve(maze, row, col) == true) {
     maze[row][col] = ' ';
     Random random = new Random();
     int randDirection = random.nextInt(4);
@@ -57,8 +57,8 @@ public static void generate(char[][]maze, int startrow, int startcol) {
 
   while (placeE) {
     Random random = new Random();
-    int col = rand.nextInt(maze[0].length - 2) + 1;
-    int row = rand.nextInt(maze.length - 2) + 1;
+    int col = random.nextInt(maze[0].length - 2) + 1;
+    int row = random.nextInt(maze.length - 2) + 1;
     if ((row != startrow || col != startcol) && Math.max(maze.length, maze[0].length) - 3 <= Math.abs(row - startrow) + Math.abs(col - startcol)) {
       if (maze[row][col] == ' ') {
         maze[row][col] = 'E';
