@@ -64,7 +64,9 @@ public static void carveGenerate(char[][] maze, int row, int col) {
 public static void generate(char[][]maze, int startrow, int startcol) {
   carveGenerate(maze, startrow, startcol);
   boolean placeE = true;
+  maze[startrow][startcol] = 'S';
 
+  
   while (placeE) {
     Random random = new Random();
     int col = random.nextInt(maze[0].length - 2) + 1;
@@ -78,7 +80,17 @@ public static void generate(char[][]maze, int startrow, int startcol) {
   }
 }
 
-public static String toString (char[][] maze) {
-  
+public static String toString (char[][] text) {
+  String result = "";
+  for (int i = 0; i < text.length; i ++) {
+    for (int x = 0; x < text[i].length; x ++) {
+      result += text[i][x];
+      if (x == text[i].length - 1) {
+        result += "\n";
+      }
+    }
+  }
+  return result;
 }
+
 }
