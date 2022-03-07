@@ -1,3 +1,4 @@
+import java.util.*;
 public class MazeGenerator {
 
 public static int openNeighbors(char[][]maze, int row, int col) {
