@@ -66,7 +66,7 @@ public static void generate(char[][]maze, int startrow, int startcol) {
   boolean placeE = true;
   maze[startrow][startcol] = 'S';
 
-  
+
   while (placeE) {
     Random random = new Random();
     int col = random.nextInt(maze[0].length - 2) + 1;
