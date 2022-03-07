@@ -22,31 +22,41 @@ public static int openNeighbors(char[][]maze, int row, int col) {
 }
 
 
-public static boolean safeCarve (char[][]maze, int row, int col) {
+public static boolean safeCarve (char[][] maze, int row, int col) {
       return row != 0 && row != maze.length - 1 && col != 0 && col != maze[row].length - 1 && maze[row][col] !=  ' ' && openNeighbors(maze, row, col) < 2;
 }
 
 
-public static void carveGenerate(char[][]maze, int row, int col) {
+public static void carveGenerate(char[][] maze, int row, int col) {
   if (safeCarve(maze, row, col) == true) {
     maze[row][col] = ' ';
-    Random random = new Random();
-    int randDirection = random.nextInt(4);
 
-    if (randDirection == 0) {
-      carveGenerate(maze, row + 1, col);
-    }
+    ArrayList<String> dir = new ArrayList<String>();
+    dir.add("N");
+    dir.add("S");
 
-    if (randDirection == 1) {
-      carveGenerate(maze, row - 1, col);
-    }
+    dir.add("E");
+    dir.add("W");
 
-    if (randDirection == 2) {
-      carveGenerate(maze, row, col + 1);
-    }
+    Collections.shuffle(dir);
 
-    if (randDirection == 3) {
-      carveGenerate(maze, row, col - 1);
+    for (int i = 0; i < dir.size(); i ++) {
+
+        if (dir.get(i) == "N") {
+            carveGenerate(maze, row + 1, col);
+        }
+
+        if (dir.get(i) == "E") {
+            carveGenerate(maze, row, col - 1);
+        }
+
+        if (dir.get(i) == "S") {
+            carveGenerate(maze, row - 1, col);
+        }
+
+        if (dir.get(i) == "W") {
+            carveGenerate(maze, row, col + 1);
+        }
     }
   }
 }
@@ -68,4 +78,7 @@ public static void generate(char[][]maze, int startrow, int startcol) {
   }
 }
 
+public static String toString (char[][] maze) {
+  
+}
 }
