@@ -27,21 +27,30 @@ public static boolean safeCarve (char[][]maze, int row, int col) {
 }
 
 
-public static void generate(char[][]maze, int startrow, int startcol) {
+public static void carveGenerate(char[][]maze, int row, int col) {
   if (safeCarve(maze, startrow, startcol) == true) {
-    //You have to check the open neighbors
-  }
+    maze[row][col] = ' ';
+    Random random = new Random();
+    int randDirection = random.nextInt(4);
 
+    if (randDirection == 0) {
+      carveGenerate(maze, row + 1, col);
+    }
 
-//for (int i = 0; i < maze.length; i ++) {
-  for (int x = 0; x < maze[i].length; x ++) {
-    if (startrow == i && startcol == x) {
-      maze[i][x] = 'S';
-    } else {
-      maze[i][x] = '#';
+    if (randDirection == 1) {
+      carveGenerate(maze, row - 1, col);
+    }
+
+    if (randDirection == 2) {
+      carveGenerate(maze, row, col + 1);
+    }
+
+    if (randDirection == 3) {
+      carveGenerate(maze, row, col - 1);
     }
   }
-}
+
+
 
 }
 
