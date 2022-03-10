@@ -22,6 +22,17 @@ while (instructions.size() > 0) {
   stomp(ins.substring(0, 1), ins.substring(1, 2), ins.substring(2), pasture);
 }
 
+for (int i = 0; i < pasture.length; i ++) {
+  for (int x = 0; x < pasture[i].length; x ++) {
+    if (elevation - pasture[i][x] <= 0) {
+      pasture[i][x] = '-';
+    } else {
+      pasture[i][x] = elevation - pasture[i][x];
+    }
+  }
+}
+
+
 }
 
 
