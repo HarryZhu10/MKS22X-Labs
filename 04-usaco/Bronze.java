@@ -1,9 +1,12 @@
+import java.util.*;
+import java.io.*;
+
 public class Bronze {
 
-public static long solve(String filename) {
+public static long solve(String filename) throws FileNotFoundException{
   File text = new File(filename);
   Scanner in = new Scanner(text);
-  char [][] pasture = new char [in.nextInt()][in.nextInt()];
+  int [][] pasture = new int [in.nextInt()][in.nextInt()];
   int elevation = in.nextInt();
   int instructionAmount = in.nextInt();
   for (int i = 0; i < pasture.length; i ++) {
@@ -12,31 +15,40 @@ public static long solve(String filename) {
     }
   }
 
-  ArrayList<String> instructions = new ArrayList<String>();
-  while (in.hasNextLine()) {
-    instructions.add(in.nextLine());
-  }
 
-while (instructions.size() > 0) {
-  String ins = instructions.remove(0);
-  stomp(ins.substring(0, 1), ins.substring(1, 2), ins.substring(2), pasture);
+while (in.hasNextInt()) {
+  int row = in.nextInt();
+  int col = in.nextInt();
+  int stompAmount = in.nextInt();
+  stomp(row, col, stompAmount, pasture);
 }
 
 for (int i = 0; i < pasture.length; i ++) {
   for (int x = 0; x < pasture[i].length; x ++) {
     if (elevation - pasture[i][x] <= 0) {
-      pasture[i][x] = '-';
+      pasture[i][x] = -1;
     } else {
       pasture[i][x] = elevation - pasture[i][x];
     }
   }
 }
 
-
+int aggregatedDepth = 0;
+for (int i = 0; i < pasture.length; i ++) {
+  for (int x = 0; x < pasture[i].length; x ++) {
+    if (pasture[i][x] != -1) {
+      aggregatedDepth += pasture[i][x];
+    }
+  }
 }
 
 
-public static void stomp (int row, int col, int stompAmount, char[][] pasture) {
+ long volume = aggregatedDepth * 72 * 72;
+ return volume;
+}
+
+
+public static void stomp (int row, int col, int stompAmount, int[][] pasture) {
   int max = 0;
   for (int i = row - 1; i < pasture.length && i < row + 2; i ++) {
     for (int x = col - 1; x < pasture[i].length && x < col + 2; x ++) {
@@ -60,6 +72,12 @@ for (int i = row - 1; i < pasture.length && i < row + 2; i ++) {
 
 }
 
+
+public static void main(String[] args) {
+    try{
+  System.out.println(solve("makelake.txt"));
+} catch (FileNotFoundException e){
+}
 
 }
 
