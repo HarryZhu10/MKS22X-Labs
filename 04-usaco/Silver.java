@@ -30,7 +30,23 @@ int c2 = in.nextInt();
 
     }
 
-public static void (int row, int col, pasture)
+public static void wander (int row, int col, int[][] pasture, int[][] oppositePasture) {
+    if (row + 1 < pasture.length) {
+      pasture[row][col] += oppositePasture[row + 1][col];
+    }
+
+    if (row - 1 >= 0) {
+      pasture[row][col] += oppositePasture[row -1][col];
+    }
+
+    if (col + 1 < pasture[row].length) {
+      pasture[row][col] += oppositePasture[row][col + 1];
+    }
+
+    if (col - 1 >= 0) {
+      pasture[row][col] += oppositePasture[row][col - 1];
+    }
+}
 
 
 public static void main(String[] args) {
