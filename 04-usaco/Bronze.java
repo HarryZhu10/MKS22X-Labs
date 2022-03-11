@@ -77,6 +77,7 @@ public static void main(String[] args) {
     try{
   System.out.println(solve("makelake.txt"));
 } catch (FileNotFoundException e){
+System.out.println("" + -1);
 }
 
 }
