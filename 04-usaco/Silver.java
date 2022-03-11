@@ -5,8 +5,13 @@ public class Silver {
   public static long solve(String filename) throws FileNotFoundException{
     File text = new File(filename);
     Scanner in = new Scanner(text);
-    char[][] pasture = new char[in.nextInt()][in.nextInt()];
+    int row = in.nextInt();
+    int col = in.nextInt();
+    char[][] pasture = new char[row][col];
     int time = in.nextInt();
+    int[][] evenPasture = new int[row][col];
+    int[][] oddPasture = new int[row][col];
+
 
     for (int i = 0; i < pasture.length; i ++) {
       String val = in.nextLine();
@@ -15,11 +20,17 @@ public class Silver {
       }
       }
 
-      
+
+int r1 = in.nextInt();
+int c1 = in.nextInt();
+int r2 = in.nextInt();
+int c2 = in.nextInt();
 
 
 
     }
+
+public static void (int row, int col, pasture)
 
 
 public static void main(String[] args) {
