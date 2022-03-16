@@ -34,15 +34,19 @@ public class Quick {
             i ++;
           }
         }
-
     }
+    putBack(data, ary, start, end);
 
 return pivotIndex;
 
 }
 
 
-
+public static void putBack (int[] original, int[] newAry, int start, int end) {
+  for (int i = start; i <= end; i ++) {
+    original[start] = newAry[i - start];
+  }
+}
 
 public static void swap (int[] data, int index1, int index2) {
   int x = data[index1];
