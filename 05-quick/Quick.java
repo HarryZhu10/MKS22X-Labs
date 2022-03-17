@@ -5,6 +5,7 @@ public class Quick {
     Random rand = new Random();
     int pivotIndex = rand.nextInt(end - start + 1) + start;
     int p = data[pivotIndex];
+    System.out.println("" + p);
     int[] ary = new int[end - start + 1];
     int originalPivotIndex = pivotIndex;
     pivotIndex = 0;
@@ -38,14 +39,18 @@ public class Quick {
         }
       }
     }
+//    System.out.println(Arrays.toString(data));
+
     putBack(data, ary, start, end);
-    return pivotIndex;
+//    System.out.println(Arrays.toString(ary));
+    System.out.println(Arrays.toString(data));
+//    return pivotIndex + start;
 }
 
 
 public static void putBack (int[] original, int[] newAry, int start, int end) {
   for (int i = start; i <= end; i ++) {
-    original[start] = newAry[i - start];
+    original[i] = newAry[i - start];
   }
 }
 
@@ -57,7 +62,7 @@ public static void swap (int[] data, int index1, int index2) {
 
 public static void main(String[] args) {
   int[] test1 = {999,999,999,4,3,2,1,0,999,999,999};
-partition(test1, 3, 7);
+System.out.println( "" + partition(test1, 3, 7));
 }
 
 }
