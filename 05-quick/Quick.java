@@ -78,12 +78,28 @@ public static int quickselect(int[]data, int k) {
   return data[newIndex];
 }
 
+public static void quicksort(int[]data) {
+quicksort(data, 0, data.length - 1);
+}
+
+
+public static void quicksort (int [] data, int start, int end) {
+  if (start < end) {
+    int p = partition(data, start, end);
+    quicksort(data, start, p - 1);
+    quicksort(data, p + 1, end);
+  }
+}
+
 
 public static void main(String[] args) {
   int[] test1 = {999,999,999,4,3,2,1,0,999,999,999};
   int[] test2 = {1,2,2,3,45,6,43,2,23};
+  int[] test3 = {3,5,3,6,7,8,53,3,23,4,3};
 //System.out.println( "" + partition(test1, 3, 7));
 System.out.println("" + quickselect(test2, 5));
+quicksort(test3);
+System.out.println(Arrays.toString(test3));
 //System.out.println(Arrays.toString(test2));
 //System.out.println(Arrays.toString(test1));
 }
