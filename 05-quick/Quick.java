@@ -1,51 +1,35 @@
 import java.util.*;
 public class Quick {
 
-  public static int partition ( int [] data, int start, int end){
-    Random rand = new Random();
-    int pivotIndex = rand.nextInt(end - start + 1) + start;
-    int p = data[pivotIndex];
-  //  System.out.println("" + p);
-    int[] ary = new int[end - start + 1];
-    int originalPivotIndex = pivotIndex;
-    pivotIndex = 0;
-    ary[pivotIndex] = p;
-    int count = 1;
-    boolean on = true;
+public static int partition(int[] data, int start, int end){
+    int pivotIndex = (int) (Math.random() * (end - start + 1) + start);
+    int index = start + 1;
+    int adjacentEqual = 0;
+swap(data, pivotIndex, start);
 
-    for (int i = start; i <= end; i ++) {
-      if (i != originalPivotIndex) {
-        if (p > data[i]) {
-          ary[pivotIndex + 1] = data[i];
-          swap(ary, pivotIndex, pivotIndex + 1);
-          pivotIndex ++;
-        } else if (p < data[i]) {
-          ary[ary.length - count] = data[i];
-          count ++;
-        } else {
-
-          while (i <= end && p == data[i]) {
-            if (on) {
-              ary[ary.length - count] = data[i];
-              count ++;
-            } else {
-              ary[pivotIndex + 1] = data[i];
-              swap(ary, pivotIndex, pivotIndex + 1);
-              pivotIndex ++;
+    for (int i = start + 1; i <= end; i++){
+        if (data[i] == data[start]) {
+            if (adjacentEqual % 2 == 0) {
+                adjacentEqual ++;
+                continue;
             }
-            on = !on;
-            i ++;
-          }
+            else {
+                adjacentEqual ++;
+            }
         }
-      }
-    }
-//    System.out.println(Arrays.toString(data));
+        if (data[i] <= data[start]){
 
-    putBack(data, ary, start, end);
-  //  System.out.println(Arrays.toString(ary));
-  //  System.out.println(Arrays.toString(data));
-    return pivotIndex + start;
+            swap(data, i, index);
+            index ++;
+        }
+    }
+
+swap(data, index - 1, start);
+    System.out.println(Arrays.toString(data));
+    return index - 1;
 }
+
+
 
 
 public static void putBack (int[] original, int[] newAry, int start, int end) {
@@ -84,11 +68,17 @@ quicksort(data, 0, data.length - 1);
 
 
 public static void quicksort (int [] data, int start, int end) {
+  if (data.length != 0) {
+
+
   if (start < end) {
     int p = partition(data, start, end);
     quicksort(data, start, p - 1);
+//System.out.println(Arrays.toString(data));
     quicksort(data, p + 1, end);
+  //  System.out.println(Arrays.toString(data));
   }
+}
 }
 
 
@@ -96,8 +86,15 @@ public static void main(String[] args) {
   int[] test1 = {999,999,999,4,3,2,1,0,999,999,999};
   int[] test2 = {1,2,2,3,45,6,43,2,23};
   int[] test3 = {3,5,3,6,7,8,53,3,23,4,3};
-//System.out.println( "" + partition(test1, 3, 7));
-System.out.println("" + quickselect(test2, 5));
+  int newIndex = partition(test3, 0, 10);
+/*
+System.out.println( "" + newIndex);
+System.out.println("");
+System.out.println("" + partition(test3, 0, newIndex - 1)); //values less than pivot
+System.out.println("");
+System.out.println("" + partition(test3,newIndex + 1, test3.length - 1));
+*/
+//System.out.println("" + quickselect(test2, 5));
 quicksort(test3);
 System.out.println(Arrays.toString(test3));
 //System.out.println(Arrays.toString(test2));
