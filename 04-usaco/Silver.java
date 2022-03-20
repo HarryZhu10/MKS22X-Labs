@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Silver {
+
   public static long solve(String filename) {
     try {
     File text = new File(filename);
@@ -11,111 +12,45 @@ public class Silver {
     int time = in.nextInt();
     String[] pasture = new String[row];
 
-
-      for (int i = 0; i < row; i ++) {
+    for (int i = 0; i < row; i ++) {
             pasture[i] = in.next();
         }
 
 
+        int r1 = in.nextInt();
+        int c1 = in.nextInt();
+        int r2 = in.nextInt();
+        int c2 = in.nextInt();
 
-int r1 = in.nextInt() - 1;
-int c1 = in.nextInt() - 1;
-int r2 = in.nextInt() - 1;
-int c2 = in.nextInt() - 1;
-/*
-pasture[r1][c1] = '@';
-evenPasture[r1][c1] = 1;
-while (time >= 0) {
-  for (int i = 0; i < pasture.length; i ++) {
-    for (int x = 0; x < pasture[i].length; x ++) {
-      if (pasture[i][x] == '@') {
-        if (even) {
-          wander(i, x, evenPasture, oddPasture, pasture);
-        } else {
-          wander(i, x, oddPasture, evenPasture, pasture);
+        int [][][] allWays = new int [time + 1][row][col];
+        allWays[0][r1 - 1][c1 - 1] = 1;
+
+
+        int directionX[] = {0, 0, -1, 1};
+        int directionY[] = {1, -1, 0, 0};
+
+        for (int i = 1; i <= time; i ++) {
+          for (int a = 0; a < row; a ++) {
+            for (int b = 0; b < col; b ++) {
+              for (int d = 0; d < 4; d ++) {
+                  int r = a + directionX[d];
+                  int c = b + directionY[d];
+                  if (r >= 0 && c >= 0 && r < row && c < col && pasture[r].charAt(c) == '.') {
+                      allWays[i][a][b] += allWays[i - 1][r][c];
+                    }
+                  }
+                }
+              }
+            }
+            return allWays[time][r2 - 1][c2 - 1];
+          } catch (FileNotFoundException e) {
+            return -1;
+          }
+
         }
-      }
-    }
-  }
-  System.out.println(toString(evenPasture));
-  System.out.println(toString(oddPasture));
-
-  even = !even;
-  time --;
-}
 
 
-if (time % 2 == 0) {
-  System.out.println("" + evenPasture[r2][c2]);
-  return (long) evenPasture[r2][c2];
-} else {
-  System.out.println("" + oddPasture[r2][c2]);
-  return (long) oddPasture[r2][c2];
-}
-*/
-} catch (FileNotFoundException e) {
-  return -1;
-}
 
-    }
-
-
-public static void wander (int row, int col, int[][] pasture, int[][] oppositePasture, char[][] charPasture) {
-    if (row + 1 < pasture.length && oppositePasture[row + 1][col] != -1 ) {
-      pasture[row][col] += oppositePasture[row + 1][col];
-      charPasture[row + 1][col] = '@';
-    }
-
-    if (row - 1 >= 0 && oppositePasture[row - 1][col] != -1) {
-      pasture[row][col] += oppositePasture[row - 1][col];
-      charPasture[row - 1][col] = '@';
-    }
-
-    if (col + 1 < pasture[row].length && oppositePasture[row][col + 1] != -1) {
-      pasture[row][col] += oppositePasture[row][col + 1];
-      charPasture[row][col + 1] = '@';
-    }
-
-    if ( col - 1 >= 0 && oppositePasture[row][col - 1] != -1) {
-      pasture[row][col] += oppositePasture[row][col - 1];
-      charPasture[row][col - 1] = '@';
-    }
-}
-
-
-public static String toString (int[][] arr) {
-  String result = "";
-  for (int i = 0; i < arr.length; i ++) {
-    for (int x = 0; x < arr[i].length; x ++) {
-      result += arr[i][x] + " ";
-    }
-        result += "\n";
-    }
-    return result;
-}
-
-public static String toString (char[][] arr) {
-  String result = "";
-  for (int i = 0; i < arr.length; i ++) {
-    for (int x = 0; x < arr[i].length; x ++) {
-      result += arr[i][x] + " ";
-    }
-    result += "\n";
-    }
-    return result;
-}
-
-
-public static void insertVal (int[][] arr, char[][] arr1) {
-  for (int i = 0; i < arr.length; i ++) {
-    for (int x = 0; x < arr[i].length; x ++) {
-      if (arr1[i][x] == '*') {
-        arr[i][x] = -1;
-      }
-    }
-}
-
-}
 
 
 public static void main(String[] args) {
