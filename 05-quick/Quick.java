@@ -25,7 +25,7 @@ swap(data, pivotIndex, start);
     }
 
 swap(data, index - 1, start);
-    System.out.println(Arrays.toString(data));
+  //  System.out.println(Arrays.toString(data));
     return index - 1;
 }
 
@@ -95,8 +95,8 @@ System.out.println("");
 System.out.println("" + partition(test3,newIndex + 1, test3.length - 1));
 */
 //System.out.println("" + quickselect(test2, 5));
-quicksort(test3);
-System.out.println(Arrays.toString(test3));
+//quicksort(test3);
+//System.out.println(Arrays.toString(test3));
 //System.out.println(Arrays.toString(test2));
 //System.out.println(Arrays.toString(test1));
 }
