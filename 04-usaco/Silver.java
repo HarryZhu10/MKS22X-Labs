@@ -8,33 +8,21 @@ public class Silver {
     Scanner in = new Scanner(text);
     int row = in.nextInt();
     int col = in.nextInt();
-    char[][] pasture = new char[row][col];
     int time = in.nextInt();
-    int[][] evenPasture = new int[row][col];
-    int[][] oddPasture = new int[row][col];
-    boolean even = true;
+    String[] pasture = new String[row];
 
-        String val = in.nextLine();
 
-      for (int i = 0; i < pasture.length; i ++) {
-            val = in.nextLine();
-          //  System.out.println(val);
-        for (int x = 0; x < val.length(); x ++) {
-          pasture[i][x] = val.charAt(x);
+      for (int i = 0; i < row; i ++) {
+            pasture[i] = in.next();
         }
 
-        }
-            //System.out.println(toString(pasture));
-
-        insertVal(evenPasture, pasture);
-        insertVal(oddPasture, pasture);
 
 
 int r1 = in.nextInt() - 1;
 int c1 = in.nextInt() - 1;
 int r2 = in.nextInt() - 1;
 int c2 = in.nextInt() - 1;
-
+/*
 pasture[r1][c1] = '@';
 evenPasture[r1][c1] = 1;
 while (time >= 0) {
@@ -64,9 +52,11 @@ if (time % 2 == 0) {
   System.out.println("" + oddPasture[r2][c2]);
   return (long) oddPasture[r2][c2];
 }
+*/
 } catch (FileNotFoundException e) {
   return -1;
 }
+
     }
 
 
