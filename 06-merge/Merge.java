@@ -50,50 +50,57 @@ if (rIndex == right.length) {
   return merged;
 }
 
-/*
-
-for (int i = 0; i < merged.length; i ++) {
-if (right.length > left.length) {
-  while(rIndex < right.length && lIndex < left.length) {
-
-}
-} else if (right.length < left.length) {
-
-} else {
-
-}
-}
-
-*/
-
 
 public static void merge(int[] destination, int [] left, int[] right) {
   int rIndex = 0;
   int lIndex = 0;
-
-  for (int i = 0; i < destination.length; i ++) {
+  int count = 0;
+  for (int i = 0; count < destination.length && rIndex < right.length && lIndex < left.length; count ++) {
     if (left[lIndex] < right[rIndex]) {
-      destination[i] = left[lIndex];
+      destination[count] = left[lIndex];
       lIndex ++;
+
     } else if (left[lIndex] > right[rIndex]) {
-      destination[i] = right[rIndex];
+      destination[count] = right[rIndex];
       rIndex ++;
+
     } else {
-      destination[i] = right[rIndex];
-      destination[i + 1] = left[lIndex];
+      destination[count] = right[rIndex];
+      destination[count + 1] = left[lIndex];
       rIndex ++;
       lIndex ++;
-      i ++;
+      count ++;
+
     }
   }
+
+if (rIndex == right.length) {
+  for (int i = lIndex; i < left.length; i ++) {
+    destination[count] = left[lIndex];
+    lIndex ++;
+    count ++;
+
+  }
+  } else if (lIndex == left.length) {
+    for (int i = rIndex; i < right.length; i ++) {
+    destination[count] = right[rIndex];
+    rIndex ++;
+    count ++;
+
+  }
+}
+
 }
 
 
 public static void main(String[] args) {
   int[] test1 = {2,3,3,3,4,7};
   int[] test2 = {3,5,5,6,8};
+  int[] test3 = new int[11];
+//System.out.println(Arrays.toString(merge(test2, test1)));
+merge(test3, test1, test2);
+System.out.println(Arrays.toString(test3));
 
-System.out.println(Arrays.toString(merge(test2, test1)));
 }
 
 
