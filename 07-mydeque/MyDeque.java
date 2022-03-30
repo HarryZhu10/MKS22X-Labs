@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class MyDeque<E>{
   private E[] data;
   private int size, start, end;
@@ -6,28 +7,22 @@ public class MyDeque<E>{
   public MyDeque() {
     size = 0;
     @SuppressWarnings("unchecked")
-    E[] data = (E[]) new Object[10];
-    if (data.length == 0) {
-    start = 0;
-    end = 0;
-  } else {
-    start = 0;
-    end = data.length - 1;
-  }
+    E[] d = (E[]) new Object[10];
+    data = d;
+    start = data.length / 2;
+    end = start - 1;
   }
 
   public MyDeque(int initialCapacity) {
+    if (initialCapacity == 0) {
+      initialCapacity = 2;
+    }
     size = 0;
     @SuppressWarnings("unchecked")
-    E[] data = (E[]) new Object[initialCapacity];
-
-    if (data.length == 0) {
-    start = 0;
-    end = 0;
-  } else {
-    start = 0;
-    end = data.length - 1;
-  }
+    E[] d = (E[]) new Object[initialCapacity];
+    data = d;
+    start = data.length / 2;
+    end = start - 1;
 
   }
 
@@ -35,20 +30,42 @@ public class MyDeque<E>{
     return size;
   }
 
+
+
   public String toString() {
     String result = "[";
-    for (int i = 0; i < data.length; i ++) {
-      result += data[i];
-      if (i != data.length - 1) {
-        result += ", ";
+    if (size != 0) {
+      if (start < end) {
+        for (int i = start; i < end; i ++) {
+          result += data[i] + ", ";
+        }
+        result += data[end];
       } else {
-        result += "]";
+        for (int i = start; i < data.length; i ++) {
+          result += data[i] + ", ";
+        }
+
+        for (int i = 0; i < end; i ++) {
+          result += data[i] + ", ";
+        }
+        result += data[end];
       }
-    }
-    return result;
+  }
+    return result += "]";
    }
 
+
+
+
+
   public void addFirst(E element) {
+    if (element == null) {
+      throw new NullPointerException("The element, " + element + " is null.");
+    }
+    if (size + 1 >= data.length) {
+      resize(data, start, end, size);
+    }
+
     if (start - 1 < 0) {
       data[data.length - 1] = element;
       start = data.length - 1;
@@ -56,55 +73,96 @@ public class MyDeque<E>{
       data[start - 1] = element;
       start -= 1;
     }
+    size ++;
    }
 
   public void addLast(E element) {
-    if (start + 1 > data.length - 1) {
+    if (element == null) {
+      throw new NullPointerException("The element, " + element + " is null.");
+    }
+    if (size + 1 >= data.length) {
+      resize(data, start, end, size);
+    }
+    if (end + 1 > data.length - 1) {
       data[0] = element;
       end = 0;
     } else {
       data[end + 1] = element;
       end += 1;
     }
+    size ++;
   }
   public E removeFirst() {
-    if (start + )
+    if (size == 0) {
+      throw new NoSuchElementException ("No element to be removed");
+    }
+    E temp = data[start];
+    data[start] = null;
+    if (start + 1 > data.length - 1) {
+      start = 0;
+    } else {
+      start ++;
+    }
+    size --;
+    return temp;
   }
 
 
-  public E removeLast() { }
+  public E removeLast() {
+    if (size == 0) {
+      throw new NoSuchElementException ("No element to be removed");
+    }
+    E temp = data[end];
+    data[end] = null;
+    if (end - 1 < 0) {
+      end = data.length - 1;
+    } else {
+      end --;
+    }
+    size --;
+    return temp;
+  }
 
   public E getFirst() {
+    if (size == 0) {
+      throw new NoSuchElementException ("No element to be removed");
+    }
     return data[start];
    }
   public E getLast() {
+    if (size == 0) {
+      throw new NoSuchElementException ("No element to be removed");
+    }
     return data[end];
   }
 
-  private E[] resize (E[] data, int start, int end, int size) {
-    if (size + 1 >= data.length) {
+  private void resize (E[] data, int start, int end, int size) {
       @SuppressWarnings("unchecked")
-      E[] result = (E[]) new Object[data.length * 2 + 1];
+      E[] result = (E[]) new Object[data.length * 2];
       if (start < end) {
+        int fill = data.length / 2;
+        for (int i = 0; i < fill; i ++) {
+          result[i] = null;
+        }
         for (int i = 0; i < data.length; i ++) {
+          result[i + fill] = data[i];
+        }
+        for (int i = data.length + fill; i < data.length * 2; i ++) {
+          result[i] = null;
+        }
+        end += fill;
+        start += fill;
+      } else {
+        for(int i = 0; i <= end; i ++){
           result[i] = data[i];
         }
-      } else {
-        int count = 0;
-        for (int i = start; i < data.length; i ++) {
-          result[i - start] = data[i];
-          count ++;
+        for(int i = start; i < data.length; i ++){
+          result[i + data.length] = data[i];
         }
-
-        for (int i = 0; i < start; i ++) {
-          result[count] = data[i];
-          count ++;
-        }
+        start += data.length;
       }
-      return result;
-    } else {
-      return data;
-    }
+      data = result;
 
   }
+
 }
