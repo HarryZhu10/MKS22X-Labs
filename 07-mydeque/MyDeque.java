@@ -62,11 +62,11 @@ public class MyDeque<E>{
     if (element == null) {
       throw new NullPointerException("The element, " + element + " is null.");
     }
-    if (size + 1 >= data.length) {
-      resize(data, start, end, size);
+    if (size == data.length) {
+      resize();
     }
 
-    if (start - 1 < 0) {
+    if (start == 0) {
       data[data.length - 1] = element;
       start = data.length - 1;
     } else {
@@ -76,29 +76,33 @@ public class MyDeque<E>{
     size ++;
    }
 
+
   public void addLast(E element) {
     if (element == null) {
       throw new NullPointerException("The element, " + element + " is null.");
     }
-    if (size + 1 >= data.length) {
-      resize(data, start, end, size);
+    if (size == data.length) {
+      resize();
     }
-    if (end + 1 > data.length - 1) {
-      data[0] = element;
+    if (end + 1 == data.length) {
       end = 0;
+      data[end] = element;
     } else {
       data[end + 1] = element;
-      end += 1;
+      end ++;
     }
     size ++;
   }
+
+
+
   public E removeFirst() {
     if (size == 0) {
       throw new NoSuchElementException ("No element to be removed");
     }
     E temp = data[start];
     data[start] = null;
-    if (start + 1 > data.length - 1) {
+    if (start == data.length - 1) {
       start = 0;
     } else {
       start ++;
@@ -114,7 +118,7 @@ public class MyDeque<E>{
     }
     E temp = data[end];
     data[end] = null;
-    if (end - 1 < 0) {
+    if (end == 0) {
       end = data.length - 1;
     } else {
       end --;
@@ -136,7 +140,7 @@ public class MyDeque<E>{
     return data[end];
   }
 
-  private void resize (E[] data, int start, int end, int size) {
+  private void resize () {
       @SuppressWarnings("unchecked")
       E[] result = (E[]) new Object[data.length * 2];
       if (start < end) {
@@ -164,5 +168,6 @@ public class MyDeque<E>{
       data = result;
 
   }
+
 
 }
