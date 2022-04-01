@@ -12,6 +12,9 @@ public class Calculator{
        */
 
       public static double eval(String s){
+        if (s.length() == 0) {
+          throw new IllegalArgumentException("Too few operands");
+        }
         Scanner in = new Scanner(s);
         Deque<Double> storage = new ArrayDeque<Double>();
         while (in.hasNext()) {
@@ -59,12 +62,15 @@ public class Calculator{
       }
 
 public static void main(String[] args) {
+  /*
   System.out.println(eval("4 /"));
   System.out.println(eval("11 3 - 4 + 2.5 *"));
   System.out.println(eval("10 2.0 +"));
   System.out.println(eval("8 2 + 99 9 - * 2 + 9 -"));
   System.out.println(eval("1 2 3 4 5 + * - -"));
 
-
+*/
+System.out.println(eval(""));
+//System.out.println(eval("5"));
 }
   }
