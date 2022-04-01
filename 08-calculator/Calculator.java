@@ -13,7 +13,7 @@ public class Calculator{
 
       public static double eval(String s){
         if (s.length() == 0) {
-          throw new IllegalArgumentException("Too few operands");
+          throw new IllegalArgumentException("too few operands");
         }
         Scanner in = new Scanner(s);
         Deque<Double> storage = new ArrayDeque<Double>();
@@ -22,13 +22,13 @@ public class Calculator{
             storage.addLast(Double.parseDouble(in.next()));
           } else {
             if (storage.size() < 2) {
-              throw new IllegalArgumentException("Too few operands");
+              throw new IllegalArgumentException("too few operands");
             }
             operator(in.next(), storage);
           }
         }
         if (storage.size() > 1) {
-          throw new IllegalArgumentException("Too few operators");
+          throw new IllegalArgumentException("too many operands");
         }
 
         return storage.getFirst();
