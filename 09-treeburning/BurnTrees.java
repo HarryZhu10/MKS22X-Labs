@@ -3,6 +3,7 @@ public class BurnTrees{
   private int[][] map;
   private int ticks;
   private Deque<int[]> frontier;
+  private int oldSize = 0;
   private static final int TREE = 2;
   private static final int FIRE = 1;
   private static final int ASH = 3;
@@ -17,7 +18,7 @@ public class BurnTrees{
     //(BEFORE WRITING ANY CODE READ ALL OF THE CODE AND SEE HOW IT FITS TOGETHER)
     //HINT: do not check the board for fire which is an n^2 operation
     //if the size of your frontier is zero then it is done
-    return false;//placeholder for compilation purposes
+    return frontier.size() == 0;//placeholder for compilation purposes
   }
 
 
@@ -26,6 +27,18 @@ public class BurnTrees{
    *new fires should remain fire, and not spread.
    */
   public void tick(){
+    while (oldSize > 0) {
+      int[] coord = frontier.removeFirst();
+      map[coord[0]][coord[1]] = ASH;
+      oldSize --;
+    }
+    int size = frontier.size();
+    while (size > 0) {
+      int[] coord2 = frontier.removeLast();
+      map[coord2[0]][coord2[1]] = FIRE;
+      size --;
+      oldSize ++;
+    }
     ticks++;//leave this here.
     //YOU MUST IMPLEMENT THE REST OF THIS METHOD
     //(BEFORE WRITING ANY CODE READ ALL OF THE CODE AND SEE HOW IT FITS TOGETHER)
@@ -60,9 +73,12 @@ public class BurnTrees{
     for(int i = 0; i < map.length; i++){
       if(map[i][0]==TREE){
         map[i][0] = FIRE;
+        int[] coord = {i, 0};
+        frontier.addFirst(coord);
+        oldSize ++;
         if (map[i][1] == TREE) {
-          int[] coord = {i, 1};
-          frontier.addLast(coord);
+          int[] coord2 = {i, 1};
+          frontier.addLast(coord2);
         }
 
 
