@@ -3,7 +3,9 @@ public class BurnTrees{
   private int[][] map;
   private int ticks;
   private Deque<int[]> frontier;
-  private int oldSize = 0;
+  private int fireSize = 0;
+  private int newSize = 0;
+  private int treeSize = 0;
   private static final int TREE = 2;
   private static final int FIRE = 1;
   private static final int ASH = 3;
@@ -26,24 +28,24 @@ public class BurnTrees{
    *All existing fires spread new fires, and turn to ash
    *new fires should remain fire, and not spread.
    */
-  public void tick(){
-    while (oldSize > 0) {
-      int[] coord = frontier.removeFirst();
-      map[coord[0]][coord[1]] = ASH;
-      oldSize --;
-    }
-    int size = frontier.size();
-    while (size > 0) {
-      int[] coord2 = frontier.removeLast();
-      map[coord2[0]][coord2[1]] = FIRE;
-      size --;
-      oldSize ++;
-    }
+  public void tick () {
+  int originalSize = frontier.size();
+  for (int i = 0; i < originalSize; i ++) {
+    int[] coord = frontier.removeLast();
+    int row = coord[0];
+    int col = coord[1];
+    checkDirection(row, col);
+    map[row][col] = ASH;
+  }
+
     ticks++;//leave this here.
     //YOU MUST IMPLEMENT THE REST OF THIS METHOD
     //(BEFORE WRITING ANY CODE READ ALL OF THE CODE AND SEE HOW IT FITS TOGETHER)
   }
 
+  public boolean inBounds (int row, int col) {
+    return row > -1 && row < map.length && col > -1 && col < map[row].length;
+  }
   /***********************YOU MIGHT UPDATE THIS**************************/
 
   /*Initialize the simulation.
@@ -64,6 +66,33 @@ public class BurnTrees{
   }
 
 
+  public void checkDirection (int row, int col) {
+    if (inBounds(row + 1, col) && map[row + 1][col] == TREE) {
+      map[row + 1][col] = FIRE;
+      int[] coord = {row + 1, col};
+      frontier.addFirst(coord);
+    }
+
+    if (inBounds(row - 1, col) && map[row - 1][col] == TREE) {
+      map[row - 1][col] = FIRE;
+      int[] coord = {row - 1, col};
+      frontier.addFirst(coord);
+    }
+
+    if (inBounds(row, col + 1) && map[row][col + 1] == TREE) {
+      map[row][col + 1] = FIRE;
+      int[] coord = {row, col + 1};
+      frontier.addFirst(coord);
+    }
+
+    if (inBounds(row, col - 1) && map[row][col - 1] == TREE) {
+      map[row][col - 1] = FIRE;
+      int[] coord = {row, col - 1};
+      frontier.addFirst(coord);
+    }
+  }
+
+
   /*
    *Sets the trees in the left column of the forest on fire
    */
@@ -75,7 +104,8 @@ public class BurnTrees{
         map[i][0] = FIRE;
         int[] coord = {i, 0};
         frontier.addFirst(coord);
-        oldSize ++;
+        fireSize ++;
+      }
         if (map[i][1] == TREE) {
           int[] coord2 = {i, 1};
           frontier.addLast(coord2);
@@ -84,7 +114,6 @@ public class BurnTrees{
 
       }
     }
-  }
 
 
 
