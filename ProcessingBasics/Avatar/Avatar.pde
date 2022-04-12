@@ -40,7 +40,7 @@ int x,y;
 
     switch(MODE){
      case 1:
-       return (int) random(800);
+       return (int) random(799);
      case 2:
      int val = (int) random(3) - 1;
        return value + val;
