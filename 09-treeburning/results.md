@@ -28,7 +28,7 @@
 | 90% |  538.0    |
 | 95% | 520.0      |
 
-### Table for 300 x 300 size done at 100 repetitions with density at intervals of 1% from 55-65%
+### Table 500 size, 100 reps with density at intervals of 1% from 55-65%
 | Density        | Average Runtime     |
 | ------------- |:-------------:|
 | 55%     | 122.0|
