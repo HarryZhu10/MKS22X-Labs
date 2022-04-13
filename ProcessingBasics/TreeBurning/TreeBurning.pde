@@ -9,29 +9,25 @@
   int SQUARESIZE;
 
   void setup() {
-    /**question 1 *********************************
-     *Given that you can change the size() and the number of ROWS and COLS,
-     *How do you calculate the SQUARESIZE (size of each square you draw) using an expression?
-     *note: width/cols and height/rows must be equal ratios for this number to be meaningful.
-     *ANSWER HERE:
-     */
     size(600, 500);
     ROWS = 50;
     COLS = 60;
-    /**question 2 *********************************
+    /**question 1 *********************************
      *At this point you have initialized width, height,ROWS,COLS. You can change these values
      *to alter the screen size, but you cannot just change one value!
      *What must be true about the ratio of these values in order for this simulation to display squares?
-     *ANSWER HERE:
+     *ANSWER HERE: width/cols needs to be equal to height/rows
      */
 
     DENSITY = .61;
     treeSim = new BurnTrees(ROWS, COLS, DENSITY);
-    /**question 3 *********************************
-    * replace squareSize = 8; with the correct square size.
-    * DO NOT just write a number, it must work when you change the size() command or the ROWS and COLS
-    */
-    SQUARESIZE = 8;
+    /**question 2 *********************************
+     *Given that you can change the size() and the number of ROWS and COLS,
+     *How do you calculate the SQUARESIZE (size of each square you draw) using an expression?
+     *ANSWER : replace squareSize = 8; with the correct square size.
+     * DO NOT just write a number, it must work when you change the size() command or the ROWS and COLS
+     */
+    SQUARESIZE = width/COLS;//side length
 
   }
 
@@ -39,19 +35,20 @@
   void draw() {
     background(0);
     //frameCount tells you how many times the draw method was called.
-    if (frameCount % 10 == 0) {
+    if (frameCount % 10 == 0) { 
       treeSim.tick();
     }
-    /**question 4 *********************************
+    /**question 3 *********************************
      *How is the behavior going to change if you only call tick() when the frameCount % 10 == 0?
      *Why do we do this?
      *hint:  If you cannot figure this out analytically, experiment to test
      *       the difference by changing the code.
-     *ANSWER HERE:
+     *ANSWER HERE: The behavior is that it will only spread fire once after a delay. 
+     This will put a delay on the animation so that it is easier for you to see what's going on.
      */
 
     String[]lines = treeSim.toString().split("\n");
-
+  
     //Convert the 2D array into a grid of RED/GREEN/WHITE/GREY Squares.
     stringToSquares(lines);
 
@@ -67,29 +64,55 @@
    *Clicking the mouse will reset the simulation by re-constructing the treeSim variable.
    */
   void mouseClicked() {
-    /**question 5 *********************************
+    /**question 4 *********************************
      *We can easily reset the simulation by clicking the mouse.
      *Please use the same values that it was initialized with in the setup.
      * ANSWER: UPDATE THE NEXT LINE
      */
-    treeSim = null;
+    treeSim = new BurnTrees(ROWS, COLS, DENSITY);
   }
 
 
-  /** question 6 *********************************
+  /** question 5 *********************************
    *Write the method that will take an array of the different lines of the board string,
    *and draw ROWSxCOLS colored squares on the screen
    *@param lines: an array of the lines of the toString method that has ROWS strings, each having a length of COLS
    *              e.g. [ "@ @@","@@@ "," @ @"] for a ROWS=3, COLS=4 board.
    *ANSWER: Complete this method.
    */
-  void stringToSquares(String[]lines) {
+  void stringToSquares(String[] lines) {
     /**Complete this method.
      *1. Break up your screen by drawing ROWSxCOLS rectangles of the same color.
      *2. Decide how to fill them in using the String[] parameter
      *   Colors: Fire = RED, Tree = GREEN, SPACE = WHITE, ASH = GREY
      */
+     int count = -1;
 
+  for(int i = 0; i < height; i += height/ROWS) {
+     int count2 = 0;
+     count ++;
+    for(int x = 0; x < width; x += width/COLS) {
+      char figure = lines[count].charAt(count2);
+      if (figure == ' ') {
+        fill(255);
+      }
+      
+      if (figure == '@') {
+        fill(0,128,0);
+      }
+      
+      if (figure == '.') {
+        fill(128,128,128);
+      }
+      
+      if (figure == 'w') {
+        fill(255,0,0);
+      }
+      rect(x, i, width/COLS, height/ROWS);
+      count2 ++;
+    }
+  }
+    
   }
 
 
