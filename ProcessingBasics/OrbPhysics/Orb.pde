@@ -41,4 +41,13 @@
           ySpeed = -1 * ySpeed;
         }
       }
+      
+      
+      void attract (Orb other) {
+        double d = dist(x,y,other.x,other.y);
+        if (d > 0.0001) {
+        xSpeed += (other.x - x) / (d);
+        ySpeed += (other.y - y) / (d);
+        }
+      }
     }
