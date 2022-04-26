@@ -20,7 +20,7 @@
         //draw a ellipse at the x,y position, with the correct radius.
         //make sure it is the correct color
         fill(c);
-        ellipse(x, y, radius, radius);
+        ellipse(x, y, 2 * radius, 2 * radius);
         line(x,y, x + 5 * xSpeed, y + 5 * ySpeed);
       }
 
