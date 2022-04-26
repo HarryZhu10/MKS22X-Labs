@@ -1,10 +1,9 @@
-
-    public class Orb{
+ public class Orb{
       float x,y;
       float xSpeed,ySpeed;
       float radius;
       color c;
-
+      
       public Orb(float x_,float y_,float xSpeed_, float ySpeed_, float radius_ ){
         x = x_;
         y = y_;
@@ -20,9 +19,9 @@
         //Part 1:
         //draw a ellipse at the x,y position, with the correct radius.
         //make sure it is the correct color
-        noStroke();
         fill(c);
         ellipse(x, y, radius, radius);
+        line(x,y, x + 5 * xSpeed, y + 5 * ySpeed);
       }
 
       void move(){
@@ -32,7 +31,7 @@
         
         //PART 3
         //Change the speed when you collide with the end of the screen (all 4 sides)
-        ySpeed += 0.2;
+        ySpeed += 0.15;
         x += xSpeed;
         y += ySpeed;
         
@@ -40,14 +39,17 @@
           xSpeed = -1 * xSpeed;
           ySpeed = -1 * ySpeed;
         }
+        
       }
       
       
       void attract (Orb other) {
+        x += xSpeed;
+        y += ySpeed;
         double d = dist(x,y,other.x,other.y);
         if (d > 0.0001) {
-        xSpeed += (other.x - x) / (d);
-        ySpeed += (other.y - y) / (d);
+        xSpeed += 20 * ( (other.x - x)) / (d*d );
+        ySpeed += 20 * ( (other.y - y)) / (d*d ); 
         }
       }
     }
