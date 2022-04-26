@@ -21,16 +21,16 @@
       background(255);
       center.display();
       for (Orb o : orbList) {
-        o.move();
-        o.display();
         if (mode == 0) {
           fill(0);
+          o.move();
           text("Mode: Gravity", 10, 60);
         } else {
           fill(0);
           text("Mode: Orbit", 10, 60);
           o.attract(center);
         }
+        o.display();
       }
       fill(0);
       text(frameRate,20,20);
