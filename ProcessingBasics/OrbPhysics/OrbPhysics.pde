@@ -26,10 +26,10 @@
         if (mode == 0) {
           fill(0);
           text("Mode: Gravity", 10, 60);
-          o.attract(center);
         } else {
           fill(0);
-          text("Mode: Bounce", 10, 60);
+          text("Mode: Orbit", 10, 60);
+          o.attract(center);
         }
       }
       fill(0);
