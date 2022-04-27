@@ -2,12 +2,23 @@
     ArrayList<Orb>orbList;
     Orb center;
     int mode;
+    boolean gravity;
+    boolean background;
+    int GRAVITY = 0;
+    int ORBIT = 1;
+    int SPRING = 2;
+    int SPRING_LENGTH = 100;
+    float SPRING_DAMPEN = 0.995;
+    float SPRING_CONSTANT = 0.005;
+    
     void setup() {
       size(1000, 800);
       orbList = new ArrayList<Orb>();
       center = new Orb(width/2.0, height/2.0,0,0,20);
       mode = 0;
-
+      gravity = true;
+      background = true;
+      
     }
     void mouseClicked() {
       //add a new Orb to the orbList, constructed as follows:
@@ -18,18 +29,38 @@
       orbList.add(ball);
     }
     void draw() {
-      background(255);
-      center.display();
-      for (Orb o : orbList) {
-        if (mode == 0) {
+      
+         if (gravity) {
           fill(0);
-          o.move();
-          text("Mode: Gravity", 10, 60);
+          text("Gravity is on", 20, 80);
         } else {
           fill(0);
-          text("Mode: Orbit", 10, 60);
-          o.attract(center);
+          text("Gravity is off", 20, 80);
         }
+        
+        if (background) {
+          background(255);
+          fill(0);
+          text("Background is on", 20, 100);
+        } else {
+          fill(0);
+          text("Background is on", 20, 100);
+        }
+        
+         if (mode == GRAVITY) {
+          fill(0);
+          text("Mode: GRAVITY", 20, 60);
+        } else if (mode == ORBIT) {
+          fill(0);
+          text("Mode: ORBIT", 20, 60);
+        } else if (mode == SPRING) {
+          fill(0);
+          text("Mode: SPRING", 20, 60);
+        }
+
+      center.display();
+      for (Orb o : orbList) {
+        o.move();
         o.display();
       }
       fill(0);
@@ -44,11 +75,19 @@
       }
 
       if (keyCode == 32) {
-        if (mode == 0) {
+        if (mode < 2) {
         mode ++;
         } else {
-          mode --;
+          mode = 0;
         }
         
+      }
+      
+      if (key == 103) {
+        gravity = !gravity;
+      }
+      
+      if (key == 98) {
+        background = !background;
       }
     }
