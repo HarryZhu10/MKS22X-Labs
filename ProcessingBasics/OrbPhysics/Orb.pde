@@ -31,25 +31,50 @@
         
         //PART 3
         //Change the speed when you collide with the end of the screen (all 4 sides)
-        ySpeed += 0.15;
+        
+        if (gravity) {
+          ySpeed += 0.15;
+        } 
+        
         x += xSpeed;
         y += ySpeed;
         
-        if ( x <= 0 || x >= width || y <= 0 || y >= height) {
-          xSpeed = -1 * xSpeed;
-          ySpeed = -1 * ySpeed;
+        if (mode == GRAVITY) {
+          bounce();
+        } else if (mode == ORBIT) {
+          attract(center);
+        } else if (mode == SPRING) {
+          attractSpring(center);
         }
+
         
       }
       
       
       void attract (Orb other) {
-        x += xSpeed;
-        y += ySpeed;
-        double d = dist(x,y,other.x,other.y);
+        float d = dist(x,y,other.x,other.y);
         if (d > 0.0001) {
         xSpeed += 20 * ( (other.x - x)) / (d*d );
         ySpeed += 20 * ( (other.y - y)) / (d*d ); 
         }
       }
+      
+      void bounce () {
+        if ( x <= 0 || x >= width || y <= 0 || y >= height) {
+          xSpeed = -1 * xSpeed;
+          ySpeed = -1 * ySpeed;
+        }
+      }
+      
+      
+     void attractSpring (Orb other) {
+       line(x,y,other.x,other.y);
+      float d = dist(x,y,other.x,other.y);
+      float force = d - SPRING_LENGTH;
+      xSpeed += SPRING_CONSTANT * (force * (other.x - x))/ d;
+      xSpeed *= SPRING_DAMPEN;
+      ySpeed += SPRING_CONSTANT * (force * (other.y - y))/ d;
+      ySpeed *= SPRING_DAMPEN;
     }
+    }
+    
