@@ -30,6 +30,19 @@
     }
     void draw() {
       
+         if (background) {
+          background(255);
+          fill(0);
+          text("Background is on", 20, 100);
+        } else {
+          fill(255);
+          noStroke();
+          rect(0,0, 120, 100);
+          stroke(0);
+          fill(0);
+          text("Background is off", 20, 100);
+        }
+      
          if (gravity) {
           fill(0);
           text("Gravity is on", 20, 80);
@@ -38,14 +51,7 @@
           text("Gravity is off", 20, 80);
         }
         
-        if (background) {
-          background(255);
-          fill(0);
-          text("Background is on", 20, 100);
-        } else {
-          fill(0);
-          text("Background is on", 20, 100);
-        }
+
         
          if (mode == GRAVITY) {
           fill(0);
