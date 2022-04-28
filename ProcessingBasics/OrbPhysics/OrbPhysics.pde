@@ -4,12 +4,12 @@
     int mode;
     boolean gravity;
     boolean background;
-    int GRAVITY = 0;
-    int ORBIT = 1;
-    int SPRING = 2;
-    int SPRING_LENGTH = 100;
-    float SPRING_DAMPEN = 0.995;
-    float SPRING_CONSTANT = 0.005;
+    final int GRAVITY = 0;
+    final int ORBIT = 1;
+    final int SPRING = 2;
+    final int SPRING_LENGTH = 100;
+    final float SPRING_DAMPEN = 0.995;
+    final float SPRING_CONSTANT = 0.005;
     
     void setup() {
       size(1000, 800);
