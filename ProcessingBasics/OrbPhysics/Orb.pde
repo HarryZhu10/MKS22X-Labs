@@ -60,8 +60,10 @@
       }
       
       void bounce () {
-        if ( x <= 0 || x >= width || y <= 0 || y >= height) {
+        if ( x <= 0 || x >= width) {
           xSpeed = -1 * xSpeed;
+        }
+        if (y <= 0 || y >= height) {
           ySpeed = -1 * ySpeed;
         }
       }
