@@ -22,10 +22,18 @@
   void display() {
     fill(c);
     ellipse(x, y, radius*2, radius*2);
+    OrbNode current = this;
     //If next or previous exist, draw lines to them! (aim for slightly off center)
     /*you write this part*/
-
-
+    if (this.prev != null) {
+      //change this
+      line(this.x - 5, this.y + 5, this.prev.x + 5, this.prev.y - 5);
+    }
+    
+    if (this.next != null) {
+      line(this.x + 5, this.y - 5, this.next.x - 5, current.next.y + 5);
+    }
+    
   }
 
   void springAttract(OrbNode other) {
