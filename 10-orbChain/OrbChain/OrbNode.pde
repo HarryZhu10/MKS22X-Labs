@@ -26,11 +26,11 @@
     /*you write this part*/
     if (this.prev != null) {
       //change this
-      line(this.x - 5, this.y + 5, this.prev.x + 5, this.prev.y - 5);
+      line(this.x - 4, this.y , this.prev.x + 4, this.prev.y );
     }
     
     if (this.next != null) {
-      line(this.x + 5, this.y - 5, this.next.x - 5, this.next.y + 5);
+      line(this.x + 4, this.y , this.next.x - 4, this.next.y );
     }
     
   }
