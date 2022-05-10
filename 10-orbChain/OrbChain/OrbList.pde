@@ -2,7 +2,7 @@ public class OrbList {
     OrbNode first, last;
 
     //create a fixed orb
-    OrbList() {
+    public OrbList() {
       first = new FixedOrbNode(0, height/5);
       last = new FixedOrbNode(width, height/5);
       //link them to eachother
@@ -15,6 +15,10 @@ public class OrbList {
     */
     void add(OrbNode orb){
      //insert orb at the end of the list before the last node.
+     orb.next = last.prev;
+     orb.prev = first.next;
+     last.prev = orb.next;
+     first.next = orb.prev;
     }
 
     /**
@@ -24,6 +28,11 @@ public class OrbList {
     void processAll() {
       OrbNode current = first;
       //advance current to next until it is null, move() each of the nodes
+      while (current != null) {
+        current.move();
+        current = current.next;
+      }
+      
     }
     /**
     *complete this method
@@ -32,5 +41,7 @@ public class OrbList {
     void display() {
       OrbNode current = first;
       //advance current to next until it is null, display() each of the nodes
+      
+      
     }
   }
