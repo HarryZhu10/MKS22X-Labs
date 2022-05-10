@@ -15,10 +15,10 @@ public class OrbList {
     */
     void add(OrbNode orb){
      //insert orb at the end of the list before the last node.
-     orb.next = last.prev;
-     orb.prev = first.next;
-     last.prev = orb.next;
-     first.next = orb.prev;
+     orb.next = last;
+     orb.prev = first;
+     last.prev = orb;
+     first.next = orb;
     }
 
     /**
@@ -41,7 +41,10 @@ public class OrbList {
     void display() {
       OrbNode current = first;
       //advance current to next until it is null, display() each of the nodes
-      
+      while (current != null) {
+        current.display();
+        current = current.next;
+      }
       
     }
   }
