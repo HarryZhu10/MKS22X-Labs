@@ -41,9 +41,9 @@
   void move() {
     //have prev and next apply spring force to this node;
     /*you write this part*/
-      next.attractSpring(this);
+      next.springAttract(this);
    
-      prev.attractSpring(this);
+      prev.springAttract(this);
     
     //apply velocity to position
     x+=dx;
@@ -52,15 +52,16 @@
     dy+=0.35;
   }
   
-  void attractSpring (OrbNode other) {
-       line(x,y,other.x,other.y);
-      float d = dist(x,y,other.x,other.y);
-      float force = d - SPRING_LENGTH;
-      dx += SPRING_CONSTANT * (force * (other.x - x))/ d;
-      dx *= SPRING_DAMPEN;
-      dy += SPRING_CONSTANT * (force * (other.y - y))/ d;
-      dy *= SPRING_DAMPEN;
-    }
+       void springAttract(OrbNode other) {
+          float dist = dist(x, y, other.x, other.y) ;
+          float force = (dist - SPRING_LENGTH) * SPRING_CONSTANT;
+          float displacex = (x - other.x) ;
+          float displacey = (y - other.y) ;
+          other.dx += displacex * force / dist;
+          other.dy += displacey * force / dist;
+          other.dx*= SPRING_DAMPEN;
+          other.dy*= SPRING_DAMPEN;
+        }
 }
 
 public class FixedOrbNode extends OrbNode{
