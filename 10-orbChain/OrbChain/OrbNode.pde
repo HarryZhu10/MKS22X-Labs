@@ -22,7 +22,6 @@
   void display() {
     fill(c);
     ellipse(x, y, radius*2, radius*2);
-    OrbNode current = this;
     //If next or previous exist, draw lines to them! (aim for slightly off center)
     /*you write this part*/
     if (this.prev != null) {
@@ -31,20 +30,9 @@
     }
     
     if (this.next != null) {
-      line(this.x + 5, this.y - 5, this.next.x - 5, current.next.y + 5);
+      line(this.x + 5, this.y - 5, this.next.x - 5, this.next.y + 5);
     }
     
-  }
-
-  void springAttract(OrbNode other) {
-    float dist = dist(x, y, other.x, other.y) ;
-    float force = (dist - SPRING_LENGTH) * SPRING_CONSTANT;
-    float displacex = (x - other.x) ;
-    float displacey = (y - other.y) ;
-    other.dx += displacex * force / dist;
-    other.dy += displacey * force / dist;
-    other.dx*= SPRING_DAMPEN;
-    other.dy*= SPRING_DAMPEN;
   }
 
   /**
@@ -53,13 +41,9 @@
   void move() {
     //have prev and next apply spring force to this node;
     /*you write this part*/
-    if (prev != null) {
-      attractSpring(prev);
-    }
-    
-    if (next != null) {
-      attractSpring(next);
-    }
+      next.attractSpring(this);
+   
+      prev.attractSpring(this);
     
     //apply velocity to position
     x+=dx;
