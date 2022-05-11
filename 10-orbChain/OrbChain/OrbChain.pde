@@ -45,6 +45,9 @@
         }
         if (key == 51) {
           SPRING_DAMPEN *= 1.05;
+          if (SPRING_DAMPEN > 1) {
+            SPRING_DAMPEN = 1;
+          }
           fill(255);
           noStroke();
           rect(0,0,10,70);
