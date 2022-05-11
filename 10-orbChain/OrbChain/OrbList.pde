@@ -47,4 +47,13 @@ public class OrbList {
       }
       
     }
+    
+    void add (int xcor, OrbNode toBeAdded) {
+      OrbNode current = first;
+      while (current.x < xcor) {
+        current = current.next;
+      }
+      add(toBeAdded);
+    }
+    
   }
