@@ -50,10 +50,17 @@ public class OrbList {
     
     void add (int xcor, OrbNode toBeAdded) {
       OrbNode current = first;
+      OrbNode previous = new OrbNode();
+      
       while (current.x < xcor) {
+        previous = current;
         current = current.next;
       }
-      add(toBeAdded);
+      
+      toBeAdded.next = current;
+      toBeAdded.prev = previous;
+      current.prev = toBeAdded.next;
+      previous.next = toBeAdded.prev;
     }
     
   }
