@@ -16,14 +16,21 @@
       color calcNewColor(PImage img, int x, int y) {
         //Hint: start by always returning black.
         //This will let you test your apply method right away!
+        img.loadPixels();
         if (x == 0 || y == 0) {
           return 0;
         }
+        int index;
+        float result = 0;
         
-        for (float[] row : kernel) {
-          
+        for (int i = 0; i < kernel.length; i ++) {
+          for (int j = 0; j < kernel[i].length; j ++) {
+            index = i * 3 + j;
+            result = result + kernel[i][j] * img.pixels[index];
+          }
         }
         
+        return (int) result;
       }
 
       /**You must write this method that applies the kernel to the source,
