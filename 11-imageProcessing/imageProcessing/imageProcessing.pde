@@ -67,7 +67,6 @@
       
       void keyPressed() {
         if (key == 49) {
-          System.out.println("1");
           if (currentKernel < 7) {
           currentKernel++;
         } else {
